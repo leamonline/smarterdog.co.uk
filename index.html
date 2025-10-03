@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e76f51">
     <title>Smarter Dog Grooming Salon - Ashton-under-Lyne | Professional Dog Grooming</title>
     <meta name="description" content="Award-winning dog grooming salon in Ashton-under-Lyne with 40+ years experience. Professional grooming for all breeds. Voted Three Best Rated. Book on WhatsApp today!">
     <meta name="keywords" content="dog grooming, Ashton-under-Lyne, pet grooming, dog salon, Tameside, professional dog grooming">
@@ -26,14 +27,52 @@
     <meta property="twitter:image" content="https://smarterdog.co.uk/logo.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="logo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
+
+    <!-- Google Analytics - Only loads after cookie consent -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Check if user has accepted analytics cookies
+        if (localStorage.getItem('analyticsAccepted') === 'true') {
+            loadGoogleAnalytics();
+        }
+
+        function loadGoogleAnalytics() {
+            // Load Google Analytics script
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VPN43VE4FC';
+            document.head.appendChild(script);
+
+            // Initialize GA4
+            gtag('js', new Date());
+            gtag('config', 'G-VPN43VE4FC', {
+                'anonymize_ip': true,
+                'cookie_flags': 'SameSite=None;Secure'
+            });
+        }
+    </script>
 </head>
 <body>
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent" style="display: none;">
+        <div class="cookie-content">
+            <p><strong>🍪 We Use Cookies</strong></p>
+            <p>This website uses essential cookies (Google Fonts, Google Maps, Formspree) and optional analytics cookies (Google Analytics) to improve your experience. You can choose which cookies to accept.</p>
+            <div class="cookie-buttons">
+                <a href="cookies.html" class="cookie-learn-more">Learn More</a>
+                <button id="acceptEssential" class="cookie-essential">Essential Only</button>
+                <button id="acceptAll" class="cookie-accept">Accept All</button>
+            </div>
+        </div>
+    </div>
     <header>
         <nav>
             <div class="logo">
@@ -330,8 +369,55 @@
         </div>
     </section>
 
+    <div class="section-divider">
+        <span class="divider-paw">🐾</span>
+    </div>
+
+    <!-- Newsletter Signup Section -->
+    <section id="newsletter" class="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2>Stay in the Loop! 🐕</h2>
+                <p class="newsletter-description">Get exclusive grooming tips, special offers, and updates delivered straight to your inbox. Join our pack!</p>
+                <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/mdkwzjnk" method="POST">
+                    <input type="hidden" name="_subject" value="Newsletter Signup - Smarter Dog">
+                    <input type="hidden" name="Form Type" value="Newsletter Signup">
+                    <div class="newsletter-input-group">
+                        <label for="newsletter-email" class="visually-hidden">Email Address</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                    <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime. See our <a href="privacy.html">Privacy Policy</a>.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Smarter Dog Grooming Salon. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/smarter.dog.grooming.salon/" target="_blank" rel="noopener" class="social-btn instagram">
+                        📸 Instagram
+                    </a>
+                    <a href="https://www.facebook.com/SmarterDog/" target="_blank" rel="noopener" class="social-btn facebook">
+                        📘 Facebook
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VamVIueG8l5Neey9oy0P" target="_blank" rel="noopener" class="social-btn whatsapp-channel">
+                        💬 WhatsApp Channel
+                    </a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p class="footer-copyright">&copy; 2025 Smarter Dog Grooming Salon. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="cookies.html">Cookie Policy</a>
+                    <a href="terms.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- JSON-LD Structured Data for Local Business -->
@@ -354,8 +440,8 @@
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 53.4900,
-            "longitude": -2.0983
+            "latitude": 53.5004583,
+            "longitude": -2.0793345
         },
         "openingHoursSpecification": [
             {
@@ -372,7 +458,10 @@
             "reviewCount": "50"
         },
         "sameAs": [
-            "https://threebestrated.co.uk/pet-grooming-in-tameside"
+            "https://threebestrated.co.uk/pet-grooming-in-tameside",
+            "https://www.instagram.com/smarter.dog.grooming.salon/",
+            "https://www.facebook.com/SmarterDog/",
+            "https://whatsapp.com/channel/0029VamVIueG8l5Neey9oy0P"
         ]
     }
     </script>

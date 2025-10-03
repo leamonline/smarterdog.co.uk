@@ -71,7 +71,7 @@ window.addEventListener('scroll', () => {
 
 // Add active state to navigation on scroll
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
+const navLinkItems = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
     let current = '';
@@ -84,7 +84,7 @@ window.addEventListener('scroll', () => {
         }
     });
 
-    navLinks.forEach(link => {
+    navLinkItems.forEach(link => {
         link.style.color = '';
         if (link.getAttribute('href') === `#${current}`) {
             link.style.color = '#14b8a6';
@@ -123,3 +123,59 @@ document.querySelectorAll('section').forEach(section => {
     section.classList.add('fade-in-section');
     sectionObserver.observe(section);
 });
+
+// Cookie Consent Banner
+const cookieConsent = document.getElementById('cookieConsent');
+const acceptEssentialBtn = document.getElementById('acceptEssential');
+const acceptAllBtn = document.getElementById('acceptAll');
+
+// Check if user has already made a cookie choice
+if (!localStorage.getItem('cookiesAccepted')) {
+    // Show banner after short delay
+    setTimeout(() => {
+        cookieConsent.style.display = 'block';
+    }, 1000);
+}
+
+// Handle Essential Only button click
+acceptEssentialBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'essential');
+    localStorage.setItem('analyticsAccepted', 'false');
+    hideCookieBanner();
+});
+
+// Handle Accept All button click
+acceptAllBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    localStorage.setItem('analyticsAccepted', 'true');
+
+    // Load Google Analytics
+    if (typeof loadGoogleAnalytics === 'function') {
+        loadGoogleAnalytics();
+    }
+
+    hideCookieBanner();
+});
+
+function hideCookieBanner() {
+    cookieConsent.style.animation = 'slideDown 0.5s ease-out forwards';
+    setTimeout(() => {
+        cookieConsent.style.display = 'none';
+    }, 500);
+}
+
+// Add slideDown animation for hiding
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideDown {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
