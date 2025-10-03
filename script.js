@@ -38,7 +38,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form will submit to https://formspree.io/f/mdkwzjnk
 // Formspree will handle the submission and send email notifications
 
-// Paw print scroll trail animation
+// Paw print scroll trail animation - disabled on mobile for performance
 function createPawPrint(x, y) {
     const paw = document.createElement('div');
     paw.className = 'paw-print';
@@ -53,56 +53,74 @@ function createPawPrint(x, y) {
     }, 2000);
 }
 
-let lastScrollTime = 0;
-const scrollThrottle = 150; // Create paw print every 150ms
+// Only enable paw prints on desktop
+if (window.innerWidth > 768) {
+    let lastScrollTime = 0;
+    const scrollThrottle = 150; // Create paw print every 150ms
 
-window.addEventListener('scroll', () => {
-    const now = Date.now();
-    if (now - lastScrollTime > scrollThrottle) {
-        lastScrollTime = now;
+    window.addEventListener('scroll', () => {
+        const now = Date.now();
+        if (now - lastScrollTime > scrollThrottle) {
+            lastScrollTime = now;
 
-        // Create paw print at random position near scroll
-        const x = Math.random() * (window.innerWidth - 50);
-        const y = window.scrollY + Math.random() * window.innerHeight;
+            // Create paw print at random position near scroll
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = window.scrollY + Math.random() * window.innerHeight;
 
-        createPawPrint(x, y);
-    }
-});
+            createPawPrint(x, y);
+        }
+    }, { passive: true });
+}
 
 // Add active state to navigation on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinkItems = document.querySelectorAll('.nav-links a');
 
+let ticking = false;
 window.addEventListener('scroll', () => {
-    let current = '';
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            let current = '';
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 100) {
-            current = section.getAttribute('id');
-        }
-    });
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-    navLinkItems.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === `#${current}`) {
-            link.style.color = '#14b8a6';
-        }
-    });
-});
+            navLinkItems.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = '#14b8a6';
+                }
+            });
+
+            ticking = false;
+        });
+        ticking = true;
+    }
+}, { passive: true });
 
 // Header background change on scroll
 const header = document.querySelector('header');
+let headerTicking = false;
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        header.style.background = '#fff';
-        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
-    } else {
-        header.style.background = '#fff';
-        header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+    if (!headerTicking) {
+        window.requestAnimationFrame(() => {
+            if (window.scrollY > 100) {
+                header.style.background = '#fff';
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = '#fff';
+                header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+            }
+            headerTicking = false;
+        });
+        headerTicking = true;
     }
-});
+}, { passive: true });
 
 // Scroll-based fade-in animations for sections
 const observerOptions = {
