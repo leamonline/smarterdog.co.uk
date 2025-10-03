@@ -1435,6 +1435,17 @@ footer::after {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .newsletter {
+        padding: 3rem 3%;
+    }
+
+    .newsletter-input-group {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+}
+
 .newsletter::before {
     content: '🐾';
     position: absolute;
@@ -1906,12 +1917,12 @@ footer::after {
 
     .service-card-small {
         width: 100%;
-        max-width: 320px;
+        max-width: 100%;
         height: auto;
-        min-height: 320px;
+        min-height: auto;
         border-radius: 25px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: 1.8rem 1.5rem;
     }
 
     .service-card-small h4 {
@@ -2094,7 +2105,9 @@ footer::after {
 
     .newsletter-input-group {
         flex-direction: column;
-        box-shadow: 5px 5px 0px rgba(38, 70, 83, 0.3);
+        box-shadow: 3px 3px 0px rgba(38, 70, 83, 0.3);
+        border-radius: 25px;
+        overflow: visible;
     }
 
     .newsletter-input-group input {
@@ -2255,9 +2268,9 @@ footer::after {
     }
 
     .service-card-small {
-        max-width: 280px;
-        min-height: 280px;
-        padding: 1.5rem;
+        max-width: 100%;
+        min-height: auto;
+        padding: 1.5rem 1.2rem;
     }
 
     .service-card-small h4 {
@@ -2335,6 +2348,10 @@ footer::after {
     }
 
     /* Newsletter */
+    .newsletter {
+        padding: 2.5rem 2%;
+    }
+
     .newsletter h2 {
         font-size: 2rem;
         letter-spacing: 2px;
@@ -2342,6 +2359,10 @@ footer::after {
 
     .newsletter-description {
         font-size: 1rem;
+    }
+
+    .newsletter-input-group {
+        box-shadow: 2px 2px 0px rgba(38, 70, 83, 0.3);
     }
 
     .newsletter-input-group input,
