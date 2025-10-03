@@ -1,3 +1,23 @@
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenuToggle.addEventListener('click', () => {
+    mobileMenuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+    mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+});
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    });
+});
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -14,23 +34,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // WhatsApp buttons now link directly, no need for click handlers
 
-// Form submission handler
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Get form values
-    const name = contactForm.querySelector('input[type="text"]').value;
-    const email = contactForm.querySelector('input[type="email"]').value;
-    const phone = contactForm.querySelector('input[type="tel"]').value;
-    const message = contactForm.querySelector('textarea').value;
-
-    // Display success message
-    alert(`Thank you, ${name}! We'll contact you soon at ${email} or ${phone}.`);
-
-    // Reset form
-    contactForm.reset();
-});
+// Form submission is now handled by Formspree
+// Form will submit to https://formspree.io/f/mdkwzjnk
+// Formspree will handle the submission and send email notifications
 
 // Add active state to navigation on scroll
 const sections = document.querySelectorAll('section[id]');

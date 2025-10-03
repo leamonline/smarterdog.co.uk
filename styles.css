@@ -122,10 +122,10 @@ nav {
 /* Hero Section */
 .hero {
     margin-top: 80px;
-    background: rgba(231, 111, 81, 0.9) url('hero-background.jpg');
+    background: rgba(231, 111, 81, 0.9) url('vinnyhero.jpg');
     background-blend-mode: multiply;
     background-size: cover;
-    background-position: center;
+    background-position: center 5%;
     background-repeat: no-repeat;
     color: white;
     text-align: center;
@@ -168,16 +168,13 @@ nav {
     }
 }
 
-.hero-content h1 {
-    font-size: 5.5rem;
+.hero-logo {
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
     margin-bottom: 1.5rem;
-    font-family: 'Righteous', cursive;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    text-shadow:
-        4px 4px 0px #264653,
-        8px 8px 0px rgba(38, 70, 83, 0.4);
-    line-height: 1.1;
+    filter: brightness(0) invert(1);
+    drop-shadow: 4px 4px 0px #264653);
 }
 
 .hero-tagline {
@@ -761,14 +758,16 @@ nav {
 
 .about-image {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .about-image img {
     width: 100%;
-    height: 100%;
-    max-height: 500px;
+    height: auto;
+    max-height: 400px;
     object-fit: cover;
     border-radius: 30px;
     box-shadow: 8px 8px 0px #f4a261;
@@ -828,7 +827,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 6rem;
+    overflow: hidden;
     transition: all 0.3s;
     box-shadow: 8px 8px 0px rgba(38, 70, 83, 0.3);
     border: 6px solid #264653;
@@ -836,10 +835,20 @@ nav {
     position: relative;
 }
 
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
 .gallery-item:hover {
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0px rgba(38, 70, 83, 0.3);
-    background: #f4a261;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
 }
 
 /* Contact Section */
@@ -884,7 +893,15 @@ nav {
 .contact-info {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 2rem;
+    height: 100%;
+}
+
+.map-container {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    width: 100%;
 }
 
 .info-item {
@@ -929,6 +946,7 @@ nav {
     font-family: inherit;
     font-size: 1.2rem;
     transition: all 0.3s;
+    width: 100%;
 }
 
 .contact-form input:focus,
@@ -1003,10 +1021,99 @@ footer p {
     z-index: 1;
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #264653;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: #264653;
+    transition: all 0.3s;
+}
+
+.hamburger::before {
+    top: -10px;
+}
+
+.hamburger::after {
+    top: 10px;
+}
+
+.mobile-menu-toggle.active .hamburger {
+    background: transparent;
+}
+
+.mobile-menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.mobile-menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: #f8edeb;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 4px solid #e76f51;
+        box-shadow: 0 4px 15px rgba(38, 70, 83, 0.2);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links li {
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+        display: block;
+        padding: 0.5rem;
+    }
+
+    .book-btn {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.5rem;
     }
 
     .hero-content h1 {
