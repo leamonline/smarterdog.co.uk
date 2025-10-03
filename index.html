@@ -77,7 +77,7 @@
             <p><strong>🍪 We Use Cookies</strong></p>
             <p>This website uses essential cookies (Google Fonts, Google Maps, Formspree) and optional analytics cookies (Google Analytics) to improve your experience. You can choose which cookies to accept.</p>
             <div class="cookie-buttons">
-                <a href="cookies.html" class="cookie-learn-more">Learn More</a>
+                <a href="cookies.html" class="cookie-learn-more">Learn More About Cookies</a>
                 <button id="acceptEssential" class="cookie-essential">Essential Only</button>
                 <button id="acceptAll" class="cookie-accept">Accept All</button>
             </div>
@@ -108,7 +108,12 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-logo-wrapper">
-                <img src="logo.png" alt="Smarter Dog Grooming Salon" class="hero-logo" fetchpriority="high">
+                <picture>
+                    <source media="(min-width: 1024px)" srcset="logo-desktop.webp" type="image/webp">
+                    <source media="(min-width: 768px)" srcset="logo-tablet.webp" type="image/webp">
+                    <source media="(max-width: 767px)" srcset="logo-mobile.webp" type="image/webp">
+                    <img src="logo.png" alt="Smarter Dog Grooming Salon" class="hero-logo" fetchpriority="high">
+                </picture>
                 <div class="award-badge">
                     🏆 TAMESIDES BEST RATED
                 </div>
