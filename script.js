@@ -38,6 +38,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form will submit to https://formspree.io/f/mdkwzjnk
 // Formspree will handle the submission and send email notifications
 
+// Paw print scroll trail animation
+function createPawPrint(x, y) {
+    const paw = document.createElement('div');
+    paw.className = 'paw-print';
+    paw.style.left = x + 'px';
+    paw.style.top = y + 'px';
+    paw.innerHTML = '🐾';
+    document.body.appendChild(paw);
+
+    // Remove paw print after animation
+    setTimeout(() => {
+        paw.remove();
+    }, 2000);
+}
+
+let lastScrollTime = 0;
+const scrollThrottle = 150; // Create paw print every 150ms
+
+window.addEventListener('scroll', () => {
+    const now = Date.now();
+    if (now - lastScrollTime > scrollThrottle) {
+        lastScrollTime = now;
+
+        // Create paw print at random position near scroll
+        const x = Math.random() * (window.innerWidth - 50);
+        const y = window.scrollY + Math.random() * window.innerHeight;
+
+        createPawPrint(x, y);
+    }
+});
+
 // Add active state to navigation on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
@@ -71,4 +102,24 @@ window.addEventListener('scroll', () => {
         header.style.background = '#fff';
         header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
     }
+});
+
+// Scroll-based fade-in animations for sections
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-visible');
+        }
+    });
+}, observerOptions);
+
+// Observe all main sections
+document.querySelectorAll('section').forEach(section => {
+    section.classList.add('fade-in-section');
+    sectionObserver.observe(section);
 });

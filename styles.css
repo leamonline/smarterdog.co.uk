@@ -13,6 +13,43 @@ body {
     font-size: 18px;
 }
 
+/* Scroll-based Section Fade-In Animation */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animated Paw Print Scroll Trail */
+.paw-print {
+    position: absolute;
+    font-size: 2rem;
+    pointer-events: none;
+    z-index: 9999;
+    animation: pawFade 2s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes pawFade {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.6;
+        transform: scale(1) rotate(-15deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-30deg) translateY(50px);
+    }
+}
+
 /* Playful Paw Print Pattern Background */
 .services,
 .gallery {
@@ -139,19 +176,25 @@ nav {
     overflow: hidden;
 }
 
+.hero-logo-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto 1.5rem;
+}
+
 .award-badge {
     position: absolute;
-    top: 30px;
-    right: 30px;
+    bottom: -20px;
+    right: 50px;
     background: #f4a261;
     color: #264653;
-    padding: 1.2rem 2.5rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 50px;
     font-family: 'Righteous', cursive;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
-    border: 5px solid #264653;
+    border: 4px solid #264653;
     box-shadow: 6px 6px 0px rgba(38, 70, 83, 0.4);
     animation: badge-glow 2s ease-in-out infinite;
     z-index: 10;
@@ -172,19 +215,11 @@ nav {
     max-width: 1200px;
     width: 100%;
     height: auto;
-    margin-bottom: 1.5rem;
+    display: block;
     filter: brightness(0) invert(1);
     drop-shadow: 4px 4px 0px #264653);
 }
 
-.hero-tagline {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    opacity: 1;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-    font-family: 'Righteous', cursive;
-}
 
 .hero-subtext {
     font-size: 1.4rem;
@@ -778,6 +813,111 @@ nav {
 .about-image img:hover {
     transform: translate(-4px, -4px);
     box-shadow: 12px 12px 0px #e76f51;
+}
+
+/* Reviews Section */
+.reviews {
+    padding: 5rem 5%;
+    background: white;
+    position: relative;
+}
+
+.reviews h2 {
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 3rem;
+    color: #e76f51;
+    font-family: 'Righteous', cursive;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow:
+        3px 3px 0px #f4a261,
+        6px 6px 0px rgba(38, 70, 83, 0.2);
+}
+
+.reviews h2::after {
+    content: '';
+    display: block;
+    width: 180px;
+    height: 8px;
+    background: #f4a261;
+    margin: 1.5rem auto 0;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(38, 70, 83, 0.2);
+}
+
+.reviews-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+}
+
+.review-card {
+    background: #cfe2e8;
+    padding: 2rem;
+    border-radius: 25px;
+    border: 5px solid #264653;
+    box-shadow: 6px 6px 0px #f4a261;
+    transition: all 0.3s;
+}
+
+.review-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #e76f51;
+}
+
+.review-stars {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.review-text {
+    font-size: 1.1rem;
+    color: #264653;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.review-author {
+    font-size: 1rem;
+    color: #e76f51;
+    font-weight: 700;
+    text-align: right;
+}
+
+.review-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.review-cta p {
+    font-size: 1.2rem;
+    color: #264653;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.review-link {
+    display: inline-block;
+    background: #e76f51;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    border: 4px solid #264653;
+    box-shadow: 5px 5px 0px rgba(38, 70, 83, 0.3);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.review-link:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px rgba(38, 70, 83, 0.3);
+    background: #f4a261;
 }
 
 /* Gallery Section */
