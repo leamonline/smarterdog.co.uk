@@ -53,19 +53,28 @@ function createPawPrint(x, y) {
     }, 2000);
 }
 
-// Only enable paw prints on desktop
-if (window.innerWidth > 768) {
+// Only enable paw prints on desktop - use matchMedia to avoid forced reflow
+const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+if (isDesktop) {
     let lastScrollTime = 0;
     const scrollThrottle = 150; // Create paw print every 150ms
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+
+    // Cache viewport dimensions
+    window.addEventListener('resize', () => {
+        viewportWidth = window.innerWidth;
+        viewportHeight = window.innerHeight;
+    }, { passive: true });
 
     window.addEventListener('scroll', () => {
         const now = Date.now();
         if (now - lastScrollTime > scrollThrottle) {
             lastScrollTime = now;
 
-            // Create paw print at random position near scroll
-            const x = Math.random() * (window.innerWidth - 50);
-            const y = window.scrollY + Math.random() * window.innerHeight;
+            // Create paw print at random position near scroll (using cached dimensions)
+            const x = Math.random() * (viewportWidth - 50);
+            const y = window.scrollY + Math.random() * viewportHeight;
 
             createPawPrint(x, y);
         }
