@@ -170,54 +170,94 @@ document.querySelectorAll('section').forEach(section => {
 const cookieConsent = document.getElementById('cookieConsent');
 const acceptEssentialBtn = document.getElementById('acceptEssential');
 const acceptAllBtn = document.getElementById('acceptAll');
+const cookieSettingsTriggers = document.querySelectorAll('[data-cookie-settings]');
 
-// Check if user has already made a cookie choice
-if (!localStorage.getItem('cookiesAccepted')) {
-    // Show banner after short delay
-    setTimeout(() => {
-        cookieConsent.style.display = 'block';
-    }, 1000);
+let analyticsLoaded = false;
+
+function loadGoogleAnalytics() {
+    if (analyticsLoaded) {
+        return;
+    }
+
+    analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+    };
+
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-VPN43VE4FC', {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+    });
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VPN43VE4FC';
+    document.head.appendChild(script);
 }
 
-// Handle Essential Only button click
-acceptEssentialBtn.addEventListener('click', () => {
-    localStorage.setItem('cookiesAccepted', 'essential');
-    localStorage.setItem('analyticsAccepted', 'false');
-    hideCookieBanner();
-});
+if (cookieConsent && acceptEssentialBtn && acceptAllBtn) {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideDown {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 
-// Handle Accept All button click
-acceptAllBtn.addEventListener('click', () => {
-    localStorage.setItem('cookiesAccepted', 'true');
-    localStorage.setItem('analyticsAccepted', 'true');
+    const showCookieBanner = () => {
+        cookieConsent.style.display = 'block';
+        cookieConsent.style.animation = 'none';
+        // Force reflow so the animation restarts when reopened
+        void cookieConsent.offsetWidth;
+        cookieConsent.style.animation = 'slideUp 0.5s ease-out';
+    };
 
-    // Load Google Analytics
-    if (typeof loadGoogleAnalytics === 'function') {
+    const hideCookieBanner = () => {
+        cookieConsent.style.animation = 'slideDown 0.5s ease-out forwards';
+        setTimeout(() => {
+            cookieConsent.style.display = 'none';
+        }, 500);
+    };
+
+    const hasCookieChoice = localStorage.getItem('cookiesAccepted');
+    const analyticsAccepted = localStorage.getItem('analyticsAccepted') === 'true';
+
+    if (analyticsAccepted) {
         loadGoogleAnalytics();
     }
 
-    hideCookieBanner();
-});
-
-function hideCookieBanner() {
-    cookieConsent.style.animation = 'slideDown 0.5s ease-out forwards';
-    setTimeout(() => {
-        cookieConsent.style.display = 'none';
-    }, 500);
-}
-
-// Add slideDown animation for hiding
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideDown {
-        from {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateY(100%);
-            opacity: 0;
-        }
+    if (!hasCookieChoice) {
+        setTimeout(showCookieBanner, 1000);
     }
-`;
-document.head.appendChild(style);
+
+    acceptEssentialBtn.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'essential');
+        localStorage.setItem('analyticsAccepted', 'false');
+        hideCookieBanner();
+    });
+
+    acceptAllBtn.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        localStorage.setItem('analyticsAccepted', 'true');
+        loadGoogleAnalytics();
+        hideCookieBanner();
+    });
+
+    cookieSettingsTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            showCookieBanner();
+        });
+    });
+} else if (localStorage.getItem('analyticsAccepted') === 'true') {
+    loadGoogleAnalytics();
+}

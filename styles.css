@@ -1470,6 +1470,28 @@ footer::after {
     border-bottom-color: #e76f51;
 }
 
+.legal-links button {
+    background: none;
+    border: none;
+    color: #f4a261;
+    font-size: 1rem;
+    padding: 0.3rem 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.legal-links button:hover,
+.legal-links button:focus {
+    color: #e76f51;
+    border-bottom-color: #e76f51;
+}
+
+.legal-links button:focus {
+    outline: 2px solid #f4a261;
+    outline-offset: 2px;
+}
+
 /* Newsletter Section */
 .newsletter {
     padding: 5rem 5%;
