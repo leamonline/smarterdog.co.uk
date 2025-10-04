@@ -1976,60 +1976,41 @@ footer::after {
     }
 
     .additional-services {
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        justify-content: flex-start;
+        flex-direction: column;
         align-items: center;
+        flex-wrap: nowrap;
         gap: 1.5rem;
-        padding: 1rem;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: #2a9d8f #f0f0f0;
+        padding: 0 1.2rem;
         width: 100%;
-        max-width: 100vw;
-    }
-
-    .additional-services::-webkit-scrollbar {
-        height: 8px;
-    }
-
-    .additional-services::-webkit-scrollbar-track {
-        background: #f0f0f0;
-        border-radius: 10px;
-    }
-
-    .additional-services::-webkit-scrollbar-thumb {
-        background: #2a9d8f;
-        border-radius: 10px;
+        max-width: 100%;
     }
 
     .service-card-small {
-        flex: 0 0 280px;
-        width: 280px;
-        min-width: 280px;
-        height: 280px;
-        border-radius: 50%;
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 360px;
+        min-width: 0;
+        height: auto;
+        border-radius: 32px;
         margin: 0;
-        padding: 1.8rem 1.5rem;
-        scroll-snap-align: center;
+        padding: 2rem 1.8rem;
     }
 
     .service-card-small h4 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        line-height: 1.2;
     }
 
     .service-tagline-small {
-        font-size: 1.1rem;
-    }
-
-    .service-small-desc {
         font-size: 1rem;
     }
 
+    .service-small-desc {
+        font-size: 0.95rem;
+    }
+
     .price-small {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .section-subtitle {
