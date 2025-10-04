@@ -131,6 +131,21 @@ window.addEventListener('scroll', () => {
     }
 }, { passive: true });
 
+// Scroll indicator - hide on scroll (mobile only)
+const scrollIndicator = document.querySelector('.scroll-indicator');
+if (scrollIndicator) {
+    let scrollHideTimeout;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            scrollIndicator.classList.add('hidden');
+            clearTimeout(scrollHideTimeout);
+            scrollHideTimeout = setTimeout(() => {
+                scrollIndicator.style.display = 'none';
+            }, 300);
+        }
+    }, { passive: true, once: true });
+}
+
 // Scroll-based fade-in animations for sections
 const observerOptions = {
     threshold: 0.1,

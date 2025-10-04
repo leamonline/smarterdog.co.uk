@@ -375,6 +375,59 @@ nav {
     color: #f8edeb;
 }
 
+/* Scroll Indicator */
+.scroll-indicator {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-indicator p {
+    color: white;
+    font-family: 'Righteous', cursive;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.paw-bounce {
+    font-size: 2rem;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+.scroll-arrow {
+    font-size: 2rem;
+    color: white;
+    animation: bounce 1.5s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-indicator {
+        display: block;
+    }
+}
+
 /* Services Section */
 .services {
     padding: 3.5rem 5%;
@@ -2291,8 +2344,9 @@ footer::after {
     }
 
     .service-card-small {
-        max-width: 100%;
-        min-height: auto;
+        flex: 0 0 250px;
+        width: 250px;
+        height: 250px;
         padding: 1.5rem 1.2rem;
     }
 
