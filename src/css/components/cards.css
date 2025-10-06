@@ -434,7 +434,7 @@
   margin: 0 auto;
   text-align: center;
   background: linear-gradient(135deg, var(--color-secondary) 0%, #f4a261 100%);
-  padding: 1.8rem var(--spacing-lg);
+  padding: 1.2rem var(--spacing-lg);
   border-radius: var(--radius-lg);
   border: var(--border-width-thick) solid var(--color-dark);
   box-shadow: 6px 6px 0px var(--color-light-blue), 10px 10px 0px rgba(38, 70, 83, 0.15);
@@ -457,20 +457,20 @@
 
 .quick-services-title-card h3 {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--color-white);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   text-shadow: 2px 2px 0px var(--color-dark), 4px 4px 0px rgba(38, 70, 83, 0.2);
 }
 
 .quick-services-note {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-white);
   font-weight: 600;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.3;
   text-shadow: 2px 2px 4px rgba(38, 70, 83, 0.3);
 }
 

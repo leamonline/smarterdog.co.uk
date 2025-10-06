@@ -7,7 +7,7 @@
 .hero {
   margin-top: 80px;
   background-color: rgba(231, 111, 81, 0.9);
-  background-image: url('vinnyhero.jpg');
+  background-image: url('/vinnyhero.jpg');
   background-blend-mode: multiply;
   background-size: cover;
   background-position: center 5%;
