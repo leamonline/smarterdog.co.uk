@@ -1,0 +1,40 @@
+/* =============================================================================
+   HEADER LAYOUT
+   Header positioning, scroll behavior, and fixed navigation
+   Fixed bug: Use var(--color-background) when not scrolled instead of hardcoded color
+   ============================================================================= */
+
+/* Header Styles */
+header {
+  background: var(--color-background);
+  box-shadow: var(--shadow-soft);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: var(--z-header);
+  border-bottom: var(--border-width) solid var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+/* Header Scroll State - Optional for future use */
+header.scrolled {
+  box-shadow: 0 4px 20px rgba(38, 70, 83, 0.15);
+}
+
+/* =============================================================================
+   MOBILE RESPONSIVE HEADER
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Adjust spacing for mobile header height */
+  header {
+    /* Mobile header height is approximately 68px */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Adjust for small mobile devices if needed */
+  header {
+    /* Small mobile header height is approximately 63px */
+  }
+}

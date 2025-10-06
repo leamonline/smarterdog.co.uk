@@ -1,0 +1,39 @@
+{
+  "name": "smarterdog-website",
+  "version": "2.0.0",
+  "description": "Smarter Dog Grooming Salon - Professional Website",
+  "private": true,
+  "scripts": {
+    "build:css": "postcss src/css/main.css -o dist/css/styles.min.css",
+    "build:js": "babel src/js/modules/main.js -o dist/js/script.min.js",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "postcss src/css/main.css -o dist/css/styles.min.css --watch",
+    "watch:js": "babel src/js/modules/main.js -o dist/js/script.min.js --watch",
+    "watch": "npm run watch:css & npm run watch:js",
+    "dev": "npm run watch"
+  },
+  "keywords": [
+    "dog-grooming",
+    "pet-services",
+    "local-business"
+  ],
+  "author": "Smarter Dog Grooming Salon",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@babel/cli": "^7.24.0",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "autoprefixer": "^10.4.18",
+    "cssnano": "^6.1.0",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.0.1",
+    "postcss-preset-env": "^9.5.0"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead",
+    "not IE 11"
+  ]
+}

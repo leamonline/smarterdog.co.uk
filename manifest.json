@@ -1,0 +1,59 @@
+{
+  "name": "Smarter Dog Grooming Salon",
+  "short_name": "Smarter Dog",
+  "description": "Award-winning dog grooming salon in Ashton-under-Lyne with 40+ years experience. Professional grooming for all breeds.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8edeb",
+  "theme_color": "#e76f51",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "lifestyle"],
+  "lang": "en-GB",
+  "dir": "ltr",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "description": "Book a grooming appointment on WhatsApp",
+      "url": "/#contact",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "description": "View our grooming services",
+      "url": "/#services",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Gallery",
+      "short_name": "Gallery",
+      "description": "View our grooming work",
+      "url": "/#gallery",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/hero-background.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+/* =============================================================================
+   UTILITY & HELPER CLASSES
+   Section dividers, paw decorations, responsive utilities, and helper classes
+   ============================================================================= */
+
+/* =============================================================================
+   SECTION DIVIDERS
+   ============================================================================= */
+
+.section-divider {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--color-secondary), transparent);
+  transform: translateY(-50%);
+}
+
+.divider-paw {
+  font-size: 2.5rem;
+  background: var(--color-background);
+  padding: 0 var(--spacing-sm);
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================================================
+   DECORATIVE PAW PRINTS
+   ============================================================================= */
+
+/* Playful Paw Print Pattern Background for Services and Gallery */
+.services,
+.gallery {
+  position: relative;
+  overflow: hidden;
+}
+
+.services::before,
+.gallery::before {
+  content: '🐾';
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.03;
+  top: 10%;
+  right: 5%;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.services::after,
+.gallery::after {
+  content: '🐾';
+  position: absolute;
+  font-size: 6rem;
+  opacity: 0.03;
+  bottom: 10%;
+  left: 8%;
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+/* =============================================================================
+   RESPONSIVE UTILITIES
+   ============================================================================= */
+
+/* Hide on Mobile */
+.hide-mobile {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on Desktop */
+.hide-desktop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hide-desktop {
+    display: block;
+  }
+}
+
+/* Show only on Mobile */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+}
+
+/* =============================================================================
+   SPACING UTILITIES
+   ============================================================================= */
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.pt-sm { padding-top: var(--spacing-sm); }
+.pt-md { padding-top: var(--spacing-md); }
+.pt-lg { padding-top: var(--spacing-lg); }
+.pt-xl { padding-top: var(--spacing-xl); }
+
+.pb-sm { padding-bottom: var(--spacing-sm); }
+.pb-md { padding-bottom: var(--spacing-md); }
+.pb-lg { padding-bottom: var(--spacing-lg); }
+.pb-xl { padding-bottom: var(--spacing-xl); }
+
+/* =============================================================================
+   TEXT UTILITIES
+   ============================================================================= */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-dark { color: var(--color-dark); }
+.text-light { color: var(--color-text-light); }
+
+.font-bold { font-weight: 700; }
+.font-normal { font-weight: 400; }
+
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+/* =============================================================================
+   DISPLAY UTILITIES
+   ============================================================================= */
+
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+/* =============================================================================
+   CONTAINER UTILITIES
+   ============================================================================= */
+
+.container {
+  max-width: var(--breakpoint-desktop);
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.container-sm {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.container-md {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* =============================================================================
+   SHADOW UTILITIES
+   ============================================================================= */
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-soft { box-shadow: var(--shadow-soft); }
+
+/* =============================================================================
+   BORDER UTILITIES
+   ============================================================================= */
+
+.border-primary { border-color: var(--color-primary); }
+.border-secondary { border-color: var(--color-secondary); }
+.border-dark { border-color: var(--color-dark); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* =============================================================================
+   BACKGROUND UTILITIES
+   ============================================================================= */
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-dark { background-color: var(--color-dark); }
+.bg-light-blue { background-color: var(--color-light-blue); }
+.bg-background { background-color: var(--color-background); }
+.bg-white { background-color: var(--color-white); }
+
+/* =============================================================================
+   POSITION UTILITIES
+   ============================================================================= */
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* =============================================================================
+   OVERFLOW UTILITIES
+   ============================================================================= */
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-visible { overflow: visible; }
+
+/* =============================================================================
+   MOBILE RESPONSIVE HELPERS
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .section-divider {
+    height: 40px;
+  }
+
+  .divider-paw {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,35 @@
+# Robots.txt for smarterdog.co.uk
+
+User-agent: *
+Allow: /
+Disallow: /build/
+Disallow: /src/
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: *.json
+Disallow: *.config.js
+
+# Sitemaps
+Sitemap: https://smarterdog.co.uk/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

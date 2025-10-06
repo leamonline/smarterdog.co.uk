@@ -1,0 +1,205 @@
+/* =============================================================================
+   FOOTER LAYOUT
+   Footer section with social links and legal links
+   ============================================================================= */
+
+/* Footer */
+footer {
+  background: var(--color-dark);
+  color: var(--color-background);
+  text-align: center;
+  padding: var(--spacing-xl) 5%;
+  position: relative;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  font-size: 1.2rem;
+}
+
+/* Decorative Paw Prints */
+footer::before {
+  content: '🐾';
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.1;
+  top: 30%;
+  left: 10%;
+  transform: translateY(-50%) rotate(-20deg);
+}
+
+footer::after {
+  content: '🐾';
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.1;
+  top: 30%;
+  right: 10%;
+  transform: translateY(-50%) rotate(20deg);
+}
+
+/* Footer Content Wrapper */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================================================
+   SOCIAL LINKS SECTION
+   ============================================================================= */
+
+.footer-social {
+  margin-bottom: var(--spacing-lg);
+}
+
+.footer-social h3 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-heading);
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-sm);
+}
+
+.social-btn {
+  background: var(--color-secondary);
+  color: var(--color-dark);
+  padding: 0.8rem var(--font-size-xlarge);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: var(--border-width-thin) solid var(--color-background);
+  box-shadow: 4px 4px 0px rgba(248, 237, 235, 0.3);
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.social-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(248, 237, 235, 0.4);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Social Platform Specific Hover Colors */
+.social-btn.instagram:hover {
+  background: var(--color-instagram);
+  color: var(--color-white);
+}
+
+.social-btn.facebook:hover {
+  background: var(--color-facebook);
+  color: var(--color-white);
+}
+
+.social-btn.whatsapp-channel:hover {
+  background: var(--color-whatsapp);
+  color: var(--color-white);
+}
+
+/* =============================================================================
+   LEGAL SECTION
+   ============================================================================= */
+
+.footer-legal {
+  margin-top: var(--spacing-lg);
+}
+
+.footer-copyright {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-sm);
+}
+
+.legal-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-sm);
+}
+
+.legal-links a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all var(--transition-base);
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.legal-links a:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.legal-links button {
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  font-size: 1rem;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.legal-links button:hover,
+.legal-links button:focus {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.legal-links button:focus {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* =============================================================================
+   MOBILE RESPONSIVE FOOTER
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .footer-social h3 {
+    font-size: var(--font-size-xlarge);
+  }
+
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .social-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 0.7rem var(--spacing-md);
+  }
+
+  .legal-links {
+    gap: 1.2rem;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .footer-social h3 {
+    font-size: 1.6rem;
+  }
+
+  .social-btn {
+    font-size: 0.95rem;
+  }
+}

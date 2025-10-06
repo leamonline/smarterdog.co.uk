@@ -33,10 +33,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Righteous&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="dist/css/styles.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="canonical" href="https://smarterdog.co.uk/">
 
 </head>
 <body>
+    <a href="#home" class="skip-link">Skip to main content</a>
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent" style="display: none;">
         <div class="cookie-content">
@@ -453,6 +456,17 @@
     }
     </script>
 
-    <script src="script.js"></script>
+    <script type="module" src="dist/js/script.min.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('✓ Service Worker registered:', reg.scope))
+                    .catch(err => console.log('✗ Service Worker registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>

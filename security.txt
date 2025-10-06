@@ -1,0 +1,10 @@
+Contact: mailto:leam@smarterdog.co.uk
+Expires: 2026-01-04T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://smarterdog.co.uk/.well-known/security.txt
+
+# Security Policy
+# If you discover a security vulnerability, please email us at leam@smarterdog.co.uk
+# We appreciate responsible disclosure and will respond within 48 hours.
+
+Acknowledgments: https://smarterdog.co.uk/security-acknowledgments.html

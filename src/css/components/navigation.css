@@ -1,0 +1,191 @@
+/* =============================================================================
+   NAVIGATION COMPONENT
+   Navigation bar styles including desktop menu, mobile hamburger menu,
+   and navigation links with hover effects
+   ============================================================================= */
+
+/* Desktop Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 5%;
+  max-width: var(--breakpoint-desktop);
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-lg);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transition: all var(--transition-base);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  z-index: calc(var(--z-header) + 1);
+}
+
+/* Hamburger Icon */
+.hamburger {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: var(--color-dark);
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background: var(--color-dark);
+  transition: all var(--transition-base);
+}
+
+.hamburger::before {
+  top: -10px;
+}
+
+.hamburger::after {
+  top: 10px;
+}
+
+/* Hamburger Active State (X icon) */
+.mobile-menu-toggle.active .hamburger {
+  background: transparent;
+}
+
+.mobile-menu-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.mobile-menu-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* =============================================================================
+   MOBILE RESPONSIVE NAVIGATION
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Show Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  /* Adjust Logo Size */
+  .logo img {
+    height: 40px;
+  }
+
+  /* Mobile Navigation Menu */
+  .nav-links {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--color-background);
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+    border-bottom: var(--border-width) solid var(--color-primary);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+  }
+
+  /* Active Mobile Menu */
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Mobile Menu List Items */
+  .nav-links li {
+    text-align: center;
+    animation: slideInMobile var(--transition-base) ease-out backwards;
+  }
+
+  /* Staggered Animation for Menu Items */
+  .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+  .nav-links.active li:nth-child(2) { animation-delay: 0.15s; }
+  .nav-links.active li:nth-child(3) { animation-delay: 0.2s; }
+  .nav-links.active li:nth-child(4) { animation-delay: 0.25s; }
+  .nav-links.active li:nth-child(5) { animation-delay: 0.3s; }
+  .nav-links.active li:nth-child(6) { animation-delay: 0.35s; }
+
+  /* Mobile Link Styles */
+  .nav-links a {
+    font-size: 1.3rem;
+    display: block;
+    padding: var(--spacing-xs);
+  }
+
+  /* Hide Desktop Book Button in Mobile Nav */
+  nav .book-btn {
+    display: none;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .logo img {
+    height: 35px;
+  }
+}

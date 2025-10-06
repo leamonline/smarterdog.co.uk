@@ -1,0 +1,103 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #e76f51;
+  --color-secondary: #f4a261;
+  --color-dark: #264653;
+  --color-light-blue: #cfe2e8;
+  --color-background: #f8edeb;
+  --color-white: #ffffff;
+  --color-accent-teal: #14b8a6;
+
+  /* Semantic Colors */
+  --color-text-primary: #264653;
+  --color-text-secondary: #555555;
+  --color-text-light: #888888;
+
+  /* WhatsApp Colors */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+
+  /* Social Media Colors */
+  --color-instagram: #E4405F;
+  --color-facebook: #1877F2;
+
+  /* Typography */
+  --font-primary: 'Fredoka', sans-serif;
+  --font-heading: 'Righteous', cursive;
+  --font-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+
+  /* Font Sizes */
+  --font-size-base: 18px;
+  --font-size-small: 0.9rem;
+  --font-size-medium: 1.1rem;
+  --font-size-large: 1.3rem;
+  --font-size-xlarge: 1.8rem;
+  --font-size-h1: 4rem;
+  --font-size-h2: 3.5rem;
+  --font-size-h3: 2.5rem;
+  --font-size-h4: 1.8rem;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 5rem;
+
+  /* Border Radius */
+  --radius-sm: 15px;
+  --radius-md: 20px;
+  --radius-lg: 25px;
+  --radius-xl: 30px;
+  --radius-full: 50px;
+
+  /* Borders */
+  --border-width: 4px;
+  --border-width-thick: 5px;
+  --border-width-thin: 3px;
+
+  /* Shadows */
+  --shadow-sm: 3px 3px 0px rgba(38, 70, 83, 0.3);
+  --shadow-md: 5px 5px 0px rgba(38, 70, 83, 0.3);
+  --shadow-lg: 8px 8px 0px rgba(38, 70, 83, 0.3);
+  --shadow-xl: 12px 12px 0px rgba(38, 70, 83, 0.3);
+  --shadow-soft: 0 4px 15px rgba(38, 70, 83, 0.1);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Z-index layers */
+  --z-header: 1000;
+  --z-modal: 9000;
+  --z-cookie: 10000;
+  --z-paw: 9999;
+
+  /* Breakpoints (for use in JS) */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1400px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 16px;
+    --font-size-h1: 2.5rem;
+    --font-size-h2: 2rem;
+    --font-size-h3: 1.8rem;
+    --font-size-h4: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-base: 15px;
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.8rem;
+    --font-size-h3: 1.6rem;
+    --font-size-h4: 1.3rem;
+  }
+}

@@ -1,0 +1,23 @@
+/* Main CSS Entry Point - Imports all modular stylesheets */
+
+/* Base Styles */
+@import 'base/variables.css';
+@import 'base/reset.css';
+@import 'base/typography.css';
+
+/* Components */
+@import 'components/buttons.css';
+@import 'components/navigation.css';
+@import 'components/cards.css';
+@import 'components/forms.css';
+@import 'components/animations.css';
+@import 'components/cookie-consent.css';
+
+/* Layout */
+@import 'layout/header.css';
+@import 'layout/hero.css';
+@import 'layout/sections.css';
+@import 'layout/footer.css';
+
+/* Utility Classes */
+@import 'utils/helpers.css';

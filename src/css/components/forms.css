@@ -1,0 +1,389 @@
+/* =============================================================================
+   FORM COMPONENTS
+   Contact form, newsletter form, input styles, and validation states
+   ============================================================================= */
+
+/* =============================================================================
+   CONTACT FORM
+   ============================================================================= */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--color-light-blue);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1.2rem;
+  transition: all var(--transition-base);
+  width: 100%;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(231, 111, 81, 0.2);
+  transform: translateY(-2px);
+}
+
+.contact-form button {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: var(--border-width-thick) solid var(--color-dark);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all var(--transition-base);
+  box-shadow: 6px 6px 0px rgba(38, 70, 83, 0.3);
+  position: relative;
+}
+
+.contact-form button:hover {
+  background: var(--color-secondary);
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px rgba(38, 70, 83, 0.3);
+}
+
+.contact-form button:active {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px rgba(38, 70, 83, 0.3);
+}
+
+/* =============================================================================
+   NEWSLETTER FORM
+   ============================================================================= */
+
+.newsletter-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: 0;
+  margin-bottom: var(--spacing-sm);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.newsletter-input-group input {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: var(--border-width) solid var(--color-dark);
+  border-right: none;
+  font-family: inherit;
+  font-size: 1.1rem;
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+  outline: none;
+}
+
+.newsletter-input-group input:focus {
+  border-color: var(--color-dark);
+  background: #fff7ed;
+}
+
+.newsletter-input-group button {
+  padding: var(--spacing-md) 2.5rem;
+  background: var(--color-dark);
+  color: var(--color-white);
+  border: var(--border-width) solid var(--color-dark);
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.newsletter-input-group button:hover {
+  background: var(--color-accent-teal);
+  border-color: var(--color-accent-teal);
+  transform: translateY(-2px);
+}
+
+.newsletter-input-group button:active {
+  transform: translateY(0);
+}
+
+.newsletter-privacy {
+  color: var(--color-white);
+  font-size: 0.9rem;
+  margin-top: var(--spacing-sm);
+  opacity: 0.9;
+}
+
+.newsletter-privacy a {
+  color: var(--color-white);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.newsletter-privacy a:hover {
+  opacity: 0.8;
+}
+
+/* =============================================================================
+   FORM VALIDATION STATES
+   ============================================================================= */
+
+.contact-form input.error,
+.contact-form textarea.error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.contact-form input.success,
+.contact-form textarea.success {
+  border-color: #14b8a6;
+  background-color: #f0fdfa;
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* =============================================================================
+   LOADING STATE
+   ============================================================================= */
+
+.contact-form button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.6s linear infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.contact-form.submitting {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* =============================================================================
+   TOAST NOTIFICATIONS
+   ============================================================================= */
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  z-index: 10001;
+  max-width: 400px;
+  transform: translateX(500px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  border: var(--border-width) solid var(--color-dark);
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-success {
+  background: #f0fdfa;
+  border-color: #14b8a6;
+}
+
+.toast-error {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.toast-info {
+  background: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.toast-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.toast-success .toast-icon {
+  color: #14b8a6;
+}
+
+.toast-error .toast-icon {
+  color: #ef4444;
+}
+
+.toast-info .toast-icon {
+  color: #3b82f6;
+}
+
+.toast-message {
+  flex: 1;
+  color: var(--color-dark);
+  font-size: 1rem;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-dark);
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .toast {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    top: 10px;
+  }
+}
+
+/* =============================================================================
+   HONEYPOT FIELD (Hidden)
+   ============================================================================= */
+
+input[name="_gotcha"],
+input[name="website"] {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =============================================================================
+   ACCESSIBILITY - Visually Hidden Labels
+   ============================================================================= */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* =============================================================================
+   MOBILE RESPONSIVE FORMS
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Contact Form */
+  .contact-form {
+    gap: 0.8rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .contact-form button {
+    font-size: 1.3rem;
+    padding: 1.2rem;
+  }
+
+  /* Newsletter Form */
+  .newsletter-input-group {
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-lg);
+    overflow: visible;
+  }
+
+  .newsletter-input-group input {
+    border-radius: var(--radius-lg);
+    border: var(--border-width) solid var(--color-dark);
+    padding: 1.2rem var(--spacing-md);
+    font-size: 1rem;
+  }
+
+  .newsletter-input-group button {
+    border-radius: var(--radius-lg);
+    border: var(--border-width) solid var(--color-dark);
+    padding: 1.2rem var(--spacing-lg);
+    font-size: 1.1rem;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  /* Contact Form */
+  .contact-form input,
+  .contact-form textarea {
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+  }
+
+  .contact-form button {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  /* Newsletter Form */
+  .newsletter-input-group {
+    box-shadow: 2px 2px 0px rgba(38, 70, 83, 0.3);
+  }
+
+  .newsletter-input-group input,
+  .newsletter-input-group button {
+    font-size: 0.95rem;
+    padding: var(--spacing-sm) 1.2rem;
+  }
+}

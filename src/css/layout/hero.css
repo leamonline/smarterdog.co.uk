@@ -1,0 +1,178 @@
+/* =============================================================================
+   HERO SECTION LAYOUT
+   Hero section with background image, logo, award badge, and scroll indicator
+   ============================================================================= */
+
+/* Hero Section */
+.hero {
+  margin-top: 80px;
+  background-color: rgba(231, 111, 81, 0.9);
+  background-image: url('vinnyhero.jpg');
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center 5%;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+  text-align: center;
+  padding: 10rem 5%;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Hero Logo Wrapper */
+.hero-logo-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-md) auto;
+}
+
+/* Hero Logo */
+.hero-logo {
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(4px 4px 0px var(--color-dark));
+}
+
+/* Award Badge */
+.award-badge {
+  position: absolute;
+  bottom: -20px;
+  right: 50px;
+  background: var(--color-secondary);
+  color: var(--color-dark);
+  padding: 0.8rem var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border: var(--border-width) solid var(--color-dark);
+  box-shadow: 6px 6px 0px rgba(38, 70, 83, 0.4);
+  z-index: 10;
+}
+
+/* Hero Subtext */
+.hero-subtext {
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-xl);
+  font-weight: 500;
+  opacity: 0.95;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* CTA Helper Text */
+.cta-helper {
+  font-size: 1.1rem;
+  margin-top: var(--spacing-sm);
+  font-style: italic;
+  opacity: 0.9;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  color: var(--color-background);
+}
+
+/* =============================================================================
+   SCROLL INDICATOR
+   ============================================================================= */
+
+.scroll-indicator {
+  display: none;
+  text-align: center;
+  padding: var(--spacing-md) 0;
+  background: var(--color-background);
+  z-index: 10;
+  opacity: 1;
+  transition: opacity var(--transition-base), max-height var(--transition-base);
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+}
+
+.scroll-arrow {
+  font-size: 3rem;
+  color: var(--color-primary);
+  text-shadow: 3px 3px 0px var(--color-secondary);
+}
+
+/* =============================================================================
+   MOBILE RESPONSIVE HERO
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Remove background image on mobile */
+  .hero {
+    background-image: none;
+    background-color: var(--color-primary);
+    margin-top: 68px;
+    padding: 4rem 5%;
+    min-height: 500px;
+  }
+
+  .hero-logo {
+    max-width: 90%;
+  }
+
+  .award-badge {
+    font-size: 0.7rem;
+    padding: var(--spacing-xs) 0.8rem;
+    right: 10px;
+    bottom: -12px;
+    letter-spacing: 1px;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .cta-helper {
+    font-size: 0.9rem;
+  }
+
+  /* Show scroll indicator on mobile */
+  .scroll-indicator {
+    display: block;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .hero {
+    margin-top: 63px;
+    padding: 3rem 4%;
+    min-height: 420px;
+  }
+
+  .hero-logo {
+    max-width: 95%;
+  }
+
+  .award-badge {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.7rem;
+    right: 5px;
+    bottom: -10px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+    margin-bottom: var(--font-size-xlarge);
+  }
+
+  .cta-helper {
+    font-size: 0.85rem;
+  }
+}
