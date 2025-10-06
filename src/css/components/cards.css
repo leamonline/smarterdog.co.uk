@@ -423,6 +423,57 @@
   margin-left: var(--spacing-xs);
 }
 
+/* Quick Services Combined Header */
+.quick-services-header {
+  margin: 2.5rem auto;
+}
+
+.quick-services-title-card {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #f4a261 100%);
+  padding: 2.5rem var(--spacing-lg);
+  border-radius: var(--radius-xl);
+  border: var(--border-width-thick) solid var(--color-dark);
+  box-shadow: 8px 8px 0px var(--color-light-blue), 12px 12px 0px rgba(38, 70, 83, 0.15);
+  position: relative;
+  animation: pulseGlow 3s ease-in-out infinite;
+  transition: all var(--transition-base);
+}
+
+.quick-services-title-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0px var(--color-light-blue), 15px 15px 0px rgba(38, 70, 83, 0.2);
+}
+
+.quick-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-sm);
+  animation: bounce 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+.quick-services-title-card h3 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 3px 3px 0px var(--color-dark), 6px 6px 0px rgba(38, 70, 83, 0.2);
+}
+
+.quick-services-note {
+  font-size: 1.4rem;
+  color: var(--color-white);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+  text-shadow: 2px 2px 4px rgba(38, 70, 83, 0.3);
+}
+
+/* Legacy class kept for backwards compatibility */
 .quick-services-note-card {
   max-width: 900px;
   margin: 0 auto 2.5rem;
@@ -529,6 +580,25 @@
     padding: 0.8rem var(--spacing-lg);
   }
 
+  .quick-services-title-card {
+    padding: 2rem var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 6px 6px 0px var(--color-light-blue), 10px 10px 0px rgba(38, 70, 83, 0.15);
+  }
+
+  .quick-icon {
+    font-size: 3rem;
+  }
+
+  .quick-services-title-card h3 {
+    font-size: 2rem;
+    text-shadow: 2px 2px 0px var(--color-dark), 4px 4px 0px rgba(38, 70, 83, 0.2);
+  }
+
+  .quick-services-note {
+    font-size: 1.2rem;
+  }
+
   .quick-services-note-card {
     padding: 1.2rem var(--spacing-md);
     margin-bottom: var(--spacing-lg);
@@ -615,6 +685,23 @@
   .section-subtitle {
     font-size: 1.3rem;
     padding: 0.7rem var(--spacing-md);
+  }
+
+  .quick-services-title-card {
+    padding: 1.5rem var(--spacing-sm);
+  }
+
+  .quick-icon {
+    font-size: 2.5rem;
+  }
+
+  .quick-services-title-card h3 {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+
+  .quick-services-note {
+    font-size: 1rem;
   }
 
   .quick-services-note-card p {
