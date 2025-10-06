@@ -4,15 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms & Conditions - Smarter Dog Grooming Salon</title>
-    <meta name="description" content="Terms and Conditions for Smarter Dog Grooming Salon. Understand your rights and responsibilities when using our professional dog grooming services.">
+    <link rel="stylesheet" href="styles.css?v=3">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="dist/css/styles.min.css">
+    <style>
+        .legal-content {
+            max-width: 900px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+            line-height: 1.8;
+        }
+        .legal-content h1 {
+            color: #264653;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h2 {
+            color: #2a9d8f;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h3 {
+            color: #264653;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .legal-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .legal-content ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        .legal-content li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .legal-content strong {
+            color: #264653;
+        }
+        .last-updated {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+        .contact-box {
+            background: #f4f4f4;
+            border-left: 4px solid #2a9d8f;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .highlight-box {
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+    </style>
 </head>
-<body class="legal-page">
+<body>
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent" style="display: none;">
         <div class="cookie-content">
@@ -50,25 +102,18 @@
 
     <main>
         <div class="legal-content">
-            <div class="legal-header">
-                <h1>Terms & Conditions</h1>
-                <p class="last-updated">📅 Last Updated: 3rd October 2025</p>
-            </div>
+            <h1>Terms & Conditions</h1>
+            <p class="last-updated">Last Updated: 3rd October 2025</p>
 
-            <div class="legal-section">
-                <p>These Terms and Conditions ("Terms") govern your use of dog grooming services provided by <strong>Smarter Dog Grooming Salon</strong>. By booking an appointment or using our services, you agree to these Terms.</p>
-            </div>
+            <p>These Terms and Conditions ("Terms") govern your use of dog grooming services provided by <strong>Smarter Dog Grooming Salon</strong>. By booking an appointment or using our services, you agree to these Terms.</p>
 
-            <div class="legal-section">
-                <h2>Business Information</h2>
+            <h2>1. Business Information</h2>
             <p><strong>Business Name:</strong> Smarter Dog Grooming Salon<br>
             <strong>Address:</strong> 183 Kings Road, Ashton-under-Lyne, OL6 8HD<br>
             <strong>Contact:</strong> 07507 731 487<br>
             <strong>Services:</strong> Professional dog grooming services</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Appointments & Bookings</h2>
+            <h2>2. Appointments & Bookings</h2>
 
             <h3>2.1 Requesting Availability</h3>
             <p>You can request availability by:</p>
@@ -90,10 +135,8 @@
             <h3>2.4 Opening Hours</h3>
             <p>Monday, Tuesday & Wednesday: 8:30am - 3:00pm<br>
             <em>*We may not always be online - follow us on Facebook and Instagram to stay updated</em></p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Cancellations & Rescheduling</h2>
+            <h2>3. Cancellations & Rescheduling</h2>
 
             <h3>3.1 Customer Cancellations</h3>
             <p>We understand that circumstances change. Please provide as much notice as possible if you need to cancel or reschedule:</p>
@@ -117,10 +160,8 @@
                 <li>Safety concerns regarding the pet or staff</li>
             </ul>
             <p>We will provide as much notice as possible and work with you to reschedule at your convenience.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Our Services</h2>
+            <h2>4. Our Services</h2>
 
             <h3>4.1 Services Provided</h3>
             <p>Our grooming services include, but are not limited to:</p>
@@ -144,10 +185,8 @@
 
             <h3>4.3 Service Customization</h3>
             <p>We tailor our services to meet your dog's specific needs. Please inform us of any special requirements, health conditions, or behavioral concerns when booking.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Your Responsibilities</h2>
+            <h2>5. Your Responsibilities</h2>
 
             <h3>5.1 Accurate Information</h3>
             <p>You must provide accurate and complete information about your dog, including:</p>
@@ -186,10 +225,8 @@
             <div class="highlight-box">
                 <p><strong>⚠️ Important:</strong> Your dog's welfare is our top priority. We will not proceed with any grooming that causes unnecessary distress or harm to your pet.</p>
             </div>
-            </div>
 
-            <div class="legal-section">
-                <h2>Payment Terms</h2>
+            <h2>6. Payment Terms</h2>
 
             <h3>6.1 Pricing</h3>
             <p>Prices vary based on:</p>
@@ -210,10 +247,8 @@
 
             <h3>6.3 When Payment is Due</h3>
             <p>Payment is due upon completion of services, unless otherwise agreed in advance.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Our Rights & Limitations</h2>
+            <h2>7. Our Rights & Limitations</h2>
 
             <h3>7.1 Right to Refuse Service</h3>
             <p>We reserve the right to refuse or discontinue service if:</p>
@@ -239,10 +274,8 @@
                 <li>We will seek veterinary care if you cannot be reached</li>
                 <li>You are responsible for any veterinary costs incurred</li>
             </ul>
-            </div>
 
-            <div class="legal-section">
-                <h2>Liability</h2>
+            <h2>8. Liability</h2>
 
             <h3>8.1 Our Liability</h3>
             <p>We take reasonable care in providing our services. However, we are not liable for:</p>
@@ -263,10 +296,8 @@
 
             <h3>8.3 Consumer Rights</h3>
             <p>Nothing in these Terms affects your statutory rights under UK consumer protection law, including the Consumer Rights Act 2015.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Photography & Social Media</h2>
+            <h2>9. Photography & Social Media</h2>
 
             <h3>9.1 Use of Images</h3>
             <p>We may take photographs of your dog before, during, or after grooming for:</p>
@@ -278,20 +309,15 @@
 
             <h3>9.2 Opting Out</h3>
             <p>If you do not wish for your dog's images to be used, please inform us at the time of booking. We will respect your wishes.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Data Protection</h2>
+            <h2>10. Data Protection</h2>
             <p>We collect and process your personal data in accordance with UK GDPR and the Data Protection Act 2018. Please read our <a href="privacy.html">Privacy Policy</a> for full details on how we handle your information.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Complaints</h2>
+            <h2>11. Complaints</h2>
 
             <h3>11.1 How to Complain</h3>
             <p>If you are unhappy with our services, please contact us as soon as possible:</p>
             <div class="contact-box">
-                <h3>Get In Touch!</h3>
                 <p>💬 <strong>WhatsApp/SMS:</strong> 07507 731 487<br>
                 📍 <strong>In Person:</strong> 183 Kings Road, Ashton-under-Lyne, OL6 8HD</p>
             </div>
@@ -303,23 +329,16 @@
                 <li>Investigate the issue thoroughly</li>
                 <li>Work with you to find a fair resolution</li>
             </ul>
-            </div>
 
-            <div class="legal-section">
-                <h2>Changes to These Terms</h2>
+            <h2>12. Changes to These Terms</h2>
             <p>We may update these Terms from time to time. Any changes will be posted on this page with an updated "Last Updated" date. Continued use of our services after changes constitutes acceptance of the updated Terms.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Governing Law</h2>
+            <h2>13. Governing Law</h2>
             <p>These Terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Contact Us</h2>
+            <h2>14. Contact Us</h2>
             <p>If you have questions about these Terms & Conditions, please contact us:</p>
             <div class="contact-box">
-                <h3>Contact Us!</h3>
                 <p><strong>Smarter Dog Grooming Salon</strong><br>
                 📍 183 Kings Road, Ashton-under-Lyne, OL6 8HD<br>
                 💬 07507 731 487<br>
@@ -331,11 +350,6 @@
 
             <div class="highlight-box">
                 <p><strong>💚 Thank You!</strong> We appreciate your trust in Smarter Dog Grooming Salon. We're committed to providing the best care for your beloved pet in a safe, professional, and loving environment.</p>
-            </div>
-            </div>
-
-            <div class="back-to-home">
-                <a href="index.html">🏠 Back to Homepage</a>
             </div>
         </div>
     </main>
@@ -368,6 +382,6 @@
         </div>
     </footer>
 
-    <script type="module" src="dist/js/script.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

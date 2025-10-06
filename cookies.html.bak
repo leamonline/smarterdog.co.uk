@@ -4,14 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Policy - Smarter Dog Grooming Salon</title>
+    <link rel="stylesheet" href="styles.css?v=3">
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="dist/css/styles.min.css">
+    <style>
+        .legal-content {
+            max-width: 900px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+            line-height: 1.8;
+        }
+        .legal-content h1 {
+            color: #264653;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h2 {
+            color: #2a9d8f;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h3 {
+            color: #264653;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .legal-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .legal-content ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        .legal-content li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .legal-content strong {
+            color: #264653;
+        }
+        .last-updated {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .cookie-table th {
+            background: #2a9d8f;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .cookie-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+        .cookie-table tr:last-child td {
+            border-bottom: none;
+        }
+        .cookie-table tr:hover {
+            background: #f9f9f9;
+        }
+        .contact-box {
+            background: #f4f4f4;
+            border-left: 4px solid #2a9d8f;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        @media (max-width: 768px) {
+            .cookie-table {
+                font-size: 0.9rem;
+            }
+            .cookie-table th,
+            .cookie-table td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
 </head>
-<body class="legal-page">
+<body>
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent" style="display: none;">
         <div class="cookie-content">
@@ -49,27 +130,18 @@
 
     <main>
         <div class="legal-content">
-            <div class="legal-header">
-                <h1>Cookie Policy</h1>
-                <p class="last-updated">📅 Last Updated: 3rd October 2025</p>
-            </div>
+            <h1>Cookie Policy</h1>
+            <p class="last-updated">Last Updated: 3rd October 2025</p>
 
-            <div class="legal-section">
-                <p>This Cookie Policy explains how <strong>Smarter Dog Grooming Salon</strong> uses cookies and similar technologies on our website in compliance with the UK Privacy and Electronic Communications Regulations (PECR) and UK GDPR.</p>
-            </div>
+            <p>This Cookie Policy explains how <strong>Smarter Dog Grooming Salon</strong> uses cookies and similar technologies on our website in compliance with the UK Privacy and Electronic Communications Regulations (PECR) and UK GDPR.</p>
 
-            <div class="legal-section">
-                <h2>What Are Cookies?</h2>
+            <h2>1. What Are Cookies?</h2>
             <p>Cookies are small text files that are placed on your device (computer, smartphone, or tablet) when you visit a website. They help websites remember your preferences and improve your browsing experience.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>How We Use Cookies</h2>
+            <h2>2. How We Use Cookies</h2>
             <p>Our website uses cookies from third-party services to provide essential functionality and optional analytics to improve your experience. We do not use cookies for advertising or cross-site tracking.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Cookies We Use</h2>
+            <h2>3. Cookies We Use</h2>
 
             <h3>Essential Cookies</h3>
             <p>These cookies are necessary for the website to function properly and cannot be disabled.</p>
@@ -132,10 +204,8 @@
                     </tr>
                 </tbody>
             </table>
-            </div>
 
-            <div class="legal-section">
-                <h2>Cookie Categories</h2>
+            <h2>4. Cookie Categories</h2>
 
             <h3>Strictly Necessary Cookies</h3>
             <p>These cookies are essential for the website to function and enable core features like:</p>
@@ -162,10 +232,8 @@
                 <li><strong>IP Anonymization:</strong> We enable IP anonymization to protect your privacy</li>
             </ul>
             <p><strong>Legal Basis:</strong> Consent. Analytics cookies are only set if you click "Accept All" on our cookie banner. You can decline these by clicking "Essential Only".</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Your Cookie Choices</h2>
+            <h2>5. Your Cookie Choices</h2>
 
             <h3>Browser Controls</h3>
             <p>Most web browsers allow you to control cookies through their settings. You can:</p>
@@ -185,7 +253,6 @@
             </ul>
 
             <div class="contact-box">
-                <h3>Get In Touch!</h3>
                 <p><strong>⚠️ Note:</strong> Blocking cookies may impact your experience on our website. Specifically:</p>
                 <ul style="margin-bottom: 0;">
                     <li>The contact form may not function properly</li>
@@ -193,19 +260,15 @@
                     <li>Website fonts may not load, affecting readability</li>
                 </ul>
             </div>
-            </div>
 
-            <div class="legal-section">
-                <h2>Third-Party Cookies</h2>
+            <h2>6. Third-Party Cookies</h2>
             <p>We do not control cookies set by third-party services (Google Fonts, Google Maps, Formspree). These services may use cookies according to their own privacy policies. We recommend reviewing their policies:</p>
             <ul>
                 <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
                 <li><a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree Privacy Policy</a></li>
             </ul>
-            </div>
 
-            <div class="legal-section">
-                <h2>Cookies We Do NOT Use</h2>
+            <h2>7. Cookies We Do NOT Use</h2>
             <p>To protect your privacy, we explicitly do not use:</p>
             <ul>
                 <li>❌ Advertising cookies or remarketing pixels</li>
@@ -214,47 +277,33 @@
                 <li>❌ Third-party advertising networks</li>
                 <li>❌ User profiling for marketing purposes</li>
             </ul>
-            </div>
 
-            <div class="legal-section">
-                <h2>Mobile Devices</h2>
+            <h2>8. Mobile Devices</h2>
             <p>If you access our website via a mobile device, you can manage cookie preferences through your device settings:</p>
             <ul>
                 <li><strong>iOS (Safari):</strong> Settings → Safari → Privacy & Security</li>
                 <li><strong>Android (Chrome):</strong> Chrome app → Settings → Privacy and security → Delete browsing data</li>
             </ul>
-            </div>
 
-            <div class="legal-section">
-                <h2>Updates to This Policy</h2>
+            <h2>9. Updates to This Policy</h2>
             <p>We may update this Cookie Policy from time to time to reflect changes in our practices or legal requirements. Any changes will be posted on this page with an updated "Last Updated" date.</p>
-            </div>
 
-            <div class="legal-section">
-                <h2>Contact Us</h2>
+            <h2>10. Contact Us</h2>
             <p>If you have questions about our use of cookies or this Cookie Policy, please contact us:</p>
             <div class="contact-box">
-                <h3>Contact Us!</h3>
                 <p><strong>Smarter Dog Grooming Salon</strong><br>
                 183 Kings Road, Ashton-under-Lyne, OL6 8HD<br>
                 📞 07507 731 487<br>
                 🌐 <a href="index.html">smarterdog.co.uk</a></p>
             </div>
-            </div>
 
-            <div class="legal-section">
-                <h2>Further Information</h2>
+            <h2>11. Further Information</h2>
             <p>For more information about cookies and how to manage them, visit:</p>
             <ul>
                 <li><strong>Information Commissioner's Office (ICO):</strong> <a href="https://ico.org.uk/your-data-matters/online/cookies/" target="_blank" rel="noopener">ico.org.uk/your-data-matters/online/cookies</a></li>
                 <li><strong>About Cookies:</strong> <a href="https://www.aboutcookies.org" target="_blank" rel="noopener">aboutcookies.org</a></li>
                 <li><strong>All About Cookies:</strong> <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a></li>
             </ul>
-            </div>
-
-            <div class="back-to-home">
-                <a href="index.html">🏠 Back to Homepage</a>
-            </div>
         </div>
     </main>
 
@@ -286,6 +335,6 @@
         </div>
     </footer>
 
-    <script type="module" src="dist/js/script.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

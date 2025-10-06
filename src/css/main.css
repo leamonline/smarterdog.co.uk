@@ -19,5 +19,8 @@
 @import 'layout/sections.css';
 @import 'layout/footer.css';
 
+/* Pages */
+@import 'pages/legal.css';
+
 /* Utility Classes */
 @import 'utils/helpers.css';
