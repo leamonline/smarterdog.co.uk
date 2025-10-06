@@ -1,0 +1,1 @@
+if("serviceWorker"in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("/service-worker.js").then(reg=>console.log("\u2713 Service Worker registered:",reg.scope)).catch(err=>console.log("\u2717 Service Worker registration failed:",err))})}
