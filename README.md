@@ -25,6 +25,11 @@ npm run dev
 npm run build
 ```
 
+> _Note_: npm is configured with `loglevel=error` (see `.npmrc`) so that
+> environment-provided legacy `http-proxy` settings don't surface warnings
+> during installs or builds. Adjust the log level locally if you need verbose
+> npm output.
+
 ### Production
 ```bash
 # Build optimized assets
