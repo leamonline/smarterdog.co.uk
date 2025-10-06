@@ -35,5 +35,8 @@
     "last 2 versions",
     "not dead",
     "not IE 11"
-  ]
+  ],
+  "dependencies": {
+    "postcss-convert-values": "^7.0.7"
+  }
 }
