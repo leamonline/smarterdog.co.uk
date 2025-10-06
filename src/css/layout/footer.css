@@ -107,6 +107,87 @@ footer::after {
   color: var(--color-white);
 }
 
+/* Social Icon Buttons (SVG-based) */
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: var(--border-width) solid var(--color-dark);
+  box-shadow: 4px 4px 0px var(--color-secondary);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon-btn svg {
+  width: 30px;
+  height: 30px;
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.social-icon-btn:hover {
+  transform: translate(-3px, -3px) scale(1.05);
+  box-shadow: 6px 6px 0px var(--color-primary);
+  animation: bounce 0.6s ease-in-out;
+}
+
+.social-icon-btn.instagram svg {
+  color: var(--color-instagram);
+}
+
+.social-icon-btn.instagram:hover {
+  background: var(--color-instagram);
+  border-color: var(--color-instagram);
+}
+
+.social-icon-btn.instagram:hover svg {
+  color: var(--color-white);
+  transform: rotate(360deg) scale(1.1);
+}
+
+.social-icon-btn.facebook svg {
+  color: var(--color-facebook);
+}
+
+.social-icon-btn.facebook:hover {
+  background: var(--color-facebook);
+  border-color: var(--color-facebook);
+}
+
+.social-icon-btn.facebook:hover svg {
+  color: var(--color-white);
+  transform: rotate(-360deg) scale(1.1);
+}
+
+.social-icon-btn.whatsapp svg {
+  color: var(--color-whatsapp);
+}
+
+.social-icon-btn.whatsapp:hover {
+  background: var(--color-whatsapp);
+  border-color: var(--color-whatsapp);
+}
+
+.social-icon-btn.whatsapp:hover svg {
+  color: var(--color-white);
+  transform: scale(1.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Shake animation for WhatsApp */
+@keyframes shake {
+  0%, 100% { transform: scale(1.2) translateX(0); }
+  25% { transform: scale(1.2) translateX(-3px); }
+  75% { transform: scale(1.2) translateX(3px); }
+}
+
 /* =============================================================================
    LEGAL SECTION
    ============================================================================= */
@@ -175,9 +256,9 @@ footer::after {
   }
 
   .social-links {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
   }
 
   .social-btn {
@@ -186,6 +267,16 @@ footer::after {
     justify-content: center;
     font-size: 1rem;
     padding: 0.7rem var(--spacing-md);
+  }
+
+  .social-icon-btn {
+    width: 55px;
+    height: 55px;
+  }
+
+  .social-icon-btn svg {
+    width: 28px;
+    height: 28px;
   }
 
   .legal-links {
@@ -201,5 +292,15 @@ footer::after {
 
   .social-btn {
     font-size: 0.95rem;
+  }
+
+  .social-icon-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .social-icon-btn svg {
+    width: 25px;
+    height: 25px;
   }
 }
