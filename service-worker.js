@@ -66,14 +66,9 @@ self.addEventListener('fetch', event => {
   // Skip non-GET requests
   if (request.method !== 'GET') return;
 
-  // Skip external requests
+  // Skip external requests so the browser handles them normally.
+  // This prevents CSP violations for third-party services like Google Fonts.
   if (url.origin !== location.origin) {
-    // But allow fonts and analytics
-    if (url.hostname.includes('fonts.googleapis.com') ||
-        url.hostname.includes('fonts.gstatic.com') ||
-        url.hostname.includes('google-analytics.com')) {
-      event.respondWith(fetch(request));
-    }
     return;
   }
 
