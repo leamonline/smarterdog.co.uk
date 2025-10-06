@@ -8,7 +8,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Security Headers
 <IfModule mod_headers.c>
     # Content Security Policy
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;"
 
     # X-Frame-Options
     Header always set X-Frame-Options "SAMEORIGIN"

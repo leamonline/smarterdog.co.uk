@@ -9,6 +9,8 @@ import { initNavigation } from './navigation.js';
 import { initAnimations } from './animations.js';
 import { initCookieConsent } from './cookies.js';
 import { initForms } from './forms.js';
+import { initUI } from './ui.js';
+import { initLightbox } from './lightbox.js';
 
 // Track initialization state
 let isAppInitialized = false;
@@ -56,7 +58,9 @@ async function initializeModules() {
     { name: 'Navigation', fn: initNavigation, critical: true },
     { name: 'Animations', fn: initAnimations, critical: false },
     { name: 'Cookie Consent', fn: initCookieConsent, critical: false },
-    { name: 'Forms', fn: initForms, critical: false }
+    { name: 'Forms', fn: initForms, critical: false },
+    { name: 'UI', fn: initUI, critical: false },
+    { name: 'Lightbox', fn: initLightbox, critical: false }
   ];
 
   for (const module of modules) {

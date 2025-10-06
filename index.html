@@ -31,6 +31,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="dist/css/styles.min.css?v=2.0" as="style">
+    <link rel="preload" href="dist/js/script.min.js" as="script">
+    <link rel="preload" href="logo.png" as="image">
+
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="dist/css/styles.min.css?v=2.0">
@@ -39,6 +45,9 @@
 
 </head>
 <body>
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent" style="display: none;">
         <div class="cookie-content">
@@ -54,7 +63,7 @@
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Smarter Dog Grooming Salon logo - Professional dog grooming in Ashton-under-Lyne">
+                <img src="logo.png" alt="Smarter Dog Grooming Salon logo - Professional dog grooming in Ashton-under-Lyne" width="150" height="60">
             </a>
             <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span class="hamburger"></span>
@@ -74,6 +83,7 @@
         </nav>
     </header>
 
+    <main id="main-content">
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-logo-wrapper">
@@ -81,7 +91,7 @@
                     <source media="(min-width: 1024px)" srcset="logo-desktop.webp" type="image/webp">
                     <source media="(min-width: 768px)" srcset="logo-tablet.webp" type="image/webp">
                     <source media="(max-width: 767px)" srcset="logo-mobile.webp" type="image/webp">
-                    <img src="logo.png" alt="Smarter Dog Grooming Salon" class="hero-logo" fetchpriority="high">
+                    <img src="logo.png" alt="Smarter Dog Grooming Salon" class="hero-logo" fetchpriority="high" width="400" height="160">
                 </picture>
                 <div class="award-badge">
                     🏆 TAMESIDES BEST RATED
@@ -245,8 +255,8 @@
                 </ul>
             </div>
             <div class="about-image">
-                <img src="Mollie.jpg" alt="Mollie - Beautifully groomed at Smarter Dog" loading="lazy">
-                <img src="vinny.jpg" alt="Vinny - Beautifully groomed at Smarter Dog" loading="lazy">
+                <img src="Mollie.jpg" alt="Mollie - Beautifully groomed at Smarter Dog" loading="lazy" width="600" height="600">
+                <img src="vinny.jpg" alt="Vinny - Beautifully groomed at Smarter Dog" loading="lazy" width="600" height="600">
             </div>
         </div>
     </section>
@@ -288,16 +298,16 @@
         <h2>Our Work</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="ourworkone.jpg" alt="Before and after dog grooming transformation - Happy groomed dog at Smarter Dog Salon" loading="lazy">
+                <img src="ourworkone.jpg" alt="Before and after dog grooming transformation - Happy groomed dog at Smarter Dog Salon" loading="lazy" width="800" height="600">
             </div>
             <div class="gallery-item">
-                <img src="ourworktwo.jpg" alt="Freshly groomed dog with styled coat - Professional grooming by Smarter Dog" loading="lazy">
+                <img src="ourworktwo.jpg" alt="Freshly groomed dog with styled coat - Professional grooming by Smarter Dog" loading="lazy" width="800" height="600">
             </div>
             <div class="gallery-item">
-                <img src="ourworkthree.jpg" alt="Beautiful dog after full grooming service - Expert care at Smarter Dog" loading="lazy">
+                <img src="ourworkthree.jpg" alt="Beautiful dog after full grooming service - Expert care at Smarter Dog" loading="lazy" width="800" height="600">
             </div>
             <div class="gallery-item">
-                <img src="ourworkfour.jpg" alt="Happy dog after grooming session - Quality results from Smarter Dog Salon" loading="lazy">
+                <img src="ourworkfour.jpg" alt="Happy dog after grooming session - Quality results from Smarter Dog Salon" loading="lazy" width="800" height="600">
             </div>
         </div>
     </section>
@@ -329,10 +339,10 @@
             </div>
             <form class="contact-form" id="contactForm" action="https://formspree.io/f/mdkwzjnk" method="POST">
                 <label for="firstname">
-                    <input type="text" id="firstname" name="First Name" placeholder="First Name" required>
+                    <input type="text" id="firstname" name="First Name" placeholder="First Name" autocomplete="given-name" required>
                 </label>
                 <label for="surname">
-                    <input type="text" id="surname" name="Surname" placeholder="Surname" required>
+                    <input type="text" id="surname" name="Surname" placeholder="Surname" autocomplete="family-name" required>
                 </label>
                 <label for="dogsname">
                     <input type="text" id="dogsname" name="Dogs Name(s)" placeholder="Dog's Name(s)" required>
@@ -341,10 +351,10 @@
                     <input type="text" id="breed" name="Breed" placeholder="Breed" required>
                 </label>
                 <label for="email">
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required>
                 </label>
                 <label for="tel">
-                    <input type="tel" id="tel" name="Tel" placeholder="Telephone Number" required>
+                    <input type="tel" id="tel" name="Tel" placeholder="Telephone Number" autocomplete="tel" required>
                 </label>
                 <label for="message">
                     <textarea id="message" name="message" placeholder="Message" rows="5" required></textarea>
@@ -372,7 +382,7 @@
                     <input type="hidden" name="Form Type" value="Newsletter Signup">
                     <div class="newsletter-input-group">
                         <label for="newsletter-email" class="visually-hidden">Email Address</label>
-                        <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required>
+                        <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" autocomplete="email" required>
                         <button type="submit">Subscribe</button>
                     </div>
                     <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime. See our <a href="privacy.html">Privacy Policy</a>.</p>
@@ -380,6 +390,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <footer>
         <div class="footer-content">
@@ -461,17 +472,17 @@
     }
     </script>
 
-    <script type="module" src="dist/js/script.min.js"></script>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
 
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(reg => console.log('✓ Service Worker registered:', reg.scope))
-                    .catch(err => console.log('✗ Service Worker registration failed:', err));
-            });
-        }
-    </script>
+    <!-- Sticky WhatsApp CTA -->
+    <a href="https://wa.me/message/VNIMXCB45RYCB1" target="_blank" rel="noopener" class="sticky-whatsapp" id="stickyWhatsApp" aria-label="Book on WhatsApp">
+        📱 <span>Book Now</span>
+    </a>
+
+    <script type="module" src="dist/js/script.min.js"></script>
+    <script src="dist/js/service-worker-registration.js"></script>
 </body>
 </html>

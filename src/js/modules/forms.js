@@ -57,6 +57,9 @@ export function initForms() {
     // Setup autosave
     setupFormAutosave();
 
+    // Load submission timestamps for rate limiting
+    loadSubmissionTimestamps();
+
     isFormsInitialized = true;
     console.log('Forms initialized successfully');
   } catch (error) {
@@ -488,6 +491,23 @@ function clearSavedFormData() {
     localStorage.removeItem(config.storageKeys.formData);
   } catch (error) {
     console.error('Failed to clear form data:', error);
+  }
+}
+
+/**
+ * Load submission timestamps from localStorage
+ */
+function loadSubmissionTimestamps() {
+  try {
+    const saved = localStorage.getItem(config.storageKeys.submissionTimestamps);
+    if (saved) {
+      const timestamps = JSON.parse(saved);
+      submissionTimestamps.length = 0;
+      submissionTimestamps.push(...timestamps);
+      console.log('Loaded submission timestamps:', submissionTimestamps.length);
+    }
+  } catch (error) {
+    console.error('Failed to load submission timestamps:', error);
   }
 }
 

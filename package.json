@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "postcss src/css/main.css -o dist/css/styles.min.css",
     "build:js": "babel src/js/modules/main.js -o dist/js/script.min.js",
-    "build": "npm run build:css && npm run build:js",
+    "build:sw": "babel src/js/service-worker-registration.js -o dist/js/service-worker-registration.js",
+    "build": "npm run build:css && npm run build:js && npm run build:sw",
     "watch:css": "postcss src/css/main.css -o dist/css/styles.min.css --watch",
     "watch:js": "babel src/js/modules/main.js -o dist/js/script.min.js --watch",
     "watch": "npm run watch:css & npm run watch:js",
