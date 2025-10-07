@@ -2,7 +2,7 @@
 deployment:
   tasks:
     # Set deployment path
-    - export DEPLOYPATH=/home/leamonline/public_html/
+    - export DEPLOYPATH=/home1/xzqjfkmy/public_html/
 
     # Install dependencies and build assets
     - npm ci --production=false
