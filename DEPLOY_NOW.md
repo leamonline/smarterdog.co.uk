@@ -80,7 +80,7 @@ All modernization complete. Your website is production-ready with:
    /logo-*.webp
    /hero-background.jpg
    /vinnyhero.jpg
-   /Mollie.jpg
+   /mollie.jpg
    /vinny.jpg
    /teddy.jpg
    /ourwork*.jpg
