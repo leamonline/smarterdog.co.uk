@@ -1,0 +1,46 @@
+---
+deployment:
+  tasks:
+    # Set deployment path
+    - export DEPLOYPATH=/home/leamonline/public_html/
+
+    # Install dependencies and build assets
+    - npm ci --production=false
+    - npm run build
+
+    # Deploy HTML files
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp 404.html $DEPLOYPATH
+    - /bin/cp cookies.html $DEPLOYPATH
+    - /bin/cp faqs.html $DEPLOYPATH
+    - /bin/cp offline.html $DEPLOYPATH
+    - /bin/cp privacy.html $DEPLOYPATH
+    - /bin/cp terms.html $DEPLOYPATH
+
+    # Deploy configuration files
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp robots.txt $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH
+    - /bin/cp security.txt $DEPLOYPATH
+    - /bin/cp manifest.json $DEPLOYPATH
+    - /bin/cp service-worker.js $DEPLOYPATH
+
+    # Deploy static images
+    - /bin/cp hero-background.jpg $DEPLOYPATH
+    - /bin/cp logo.png $DEPLOYPATH
+    - /bin/cp logo-desktop.webp $DEPLOYPATH
+    - /bin/cp logo-mobile.webp $DEPLOYPATH
+    - /bin/cp logo-tablet.webp $DEPLOYPATH
+    - /bin/cp mollie.jpg $DEPLOYPATH
+    - /bin/cp teddy.jpg $DEPLOYPATH
+    - /bin/cp vinny.jpg $DEPLOYPATH
+    - /bin/cp vinnyhero.jpg $DEPLOYPATH
+    - /bin/cp ourworkone.jpg $DEPLOYPATH
+    - /bin/cp ourworktwo.jpg $DEPLOYPATH
+    - /bin/cp ourworkthree.jpg $DEPLOYPATH
+    - /bin/cp ourworkfour.jpg $DEPLOYPATH
+
+    # Deploy built assets
+    - /bin/mkdir -p $DEPLOYPATH/dist
+    - /bin/cp -R dist/css $DEPLOYPATH/dist/
+    - /bin/cp -R dist/js $DEPLOYPATH/dist/
