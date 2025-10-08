@@ -143,6 +143,7 @@
 .text-secondary { color: var(--color-secondary); }
 .text-dark { color: var(--color-dark); }
 .text-light { color: var(--color-text-light); }
+.teal-link { color: #14b8a6; }
 
 .font-bold { font-weight: 700; }
 .font-normal { font-weight: 400; }
@@ -160,6 +161,7 @@
 .d-inline-block { display: inline-block; }
 .d-flex { display: flex; }
 .d-inline-flex { display: inline-flex; }
+.hidden { display: none !important; }
 
 .flex-center {
   display: flex;

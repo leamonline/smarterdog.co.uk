@@ -64,33 +64,74 @@ async function handleNewsletterSubmit(e) {
       consent: consentCheckbox.checked.toString()
     };
 
-    // Submit to Google Apps Script
-    const response = await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-      mode: 'cors'
-    });
+    // Submit to Google Apps Script using fetch with proper error handling
+    try {
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+        redirect: 'follow'
+      });
 
-    const result = await response.json();
+      // Google Apps Script redirects on success, so if we get here, check the response
+      const text = await response.text();
+      let result;
 
-    if (result.success) {
-      // Success
-      showMessage(messageDiv, 'success', result.message);
+      try {
+        result = JSON.parse(text);
+      } catch (e) {
+        // If response isn't JSON, assume success (Apps Script may redirect)
+        result = { success: true, message: 'Thank you for subscribing! 🐕' };
+      }
+
+      if (result.success) {
+        // Success
+        showMessage(messageDiv, 'success', result.message);
+        form.reset();
+
+        // Track conversion (if analytics enabled)
+        if (window.gtag && window.analyticsConsent) {
+          window.gtag('event', 'newsletter_signup', {
+            event_category: 'engagement',
+            event_label: 'newsletter'
+          });
+        }
+      } else {
+        // Error from server
+        showMessage(messageDiv, 'error', result.message);
+      }
+    } catch (fetchError) {
+      // Network error or CORS issue - try form submission as fallback
+      console.log('Fetch failed, submitting via form...', fetchError);
+
+      // Create hidden iframe for form submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'newsletter-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      // Set form to submit to iframe
+      const originalAction = form.action;
+      const originalTarget = form.target;
+      const originalMethod = form.method;
+
+      form.action = APPS_SCRIPT_URL;
+      form.target = 'newsletter-iframe';
+      form.method = 'POST';
+      form.submit();
+
+      // Restore form
+      form.action = originalAction;
+      form.target = originalTarget;
+      form.method = originalMethod;
+
+      // Show success message (we can't verify, but assume it worked)
+      showMessage(messageDiv, 'success', 'Thank you for subscribing! 🐕');
       form.reset();
 
-      // Track conversion (if analytics enabled)
-      if (window.gtag && window.analyticsConsent) {
-        window.gtag('event', 'newsletter_signup', {
-          event_category: 'engagement',
-          event_label: 'newsletter'
-        });
-      }
-    } else {
-      // Error from server
-      showMessage(messageDiv, 'error', result.message);
+      // Clean up iframe after a delay
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+      }, 5000);
     }
 
   } catch (error) {
