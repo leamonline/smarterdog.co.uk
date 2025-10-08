@@ -66,19 +66,32 @@ async function handleNewsletterSubmit(e) {
 
     // Submit to Google Apps Script using fetch with proper error handling
     try {
+      console.log('Submitting to:', APPS_SCRIPT_URL);
+      console.log('Form data:', formData);
+
       const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        body: new URLSearchParams(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
         redirect: 'follow'
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response OK:', response.ok);
+
       // Google Apps Script redirects on success, so if we get here, check the response
       const text = await response.text();
+      console.log('Response text:', text);
+
       let result;
 
       try {
         result = JSON.parse(text);
+        console.log('Parsed result:', result);
       } catch (e) {
+        console.log('Failed to parse JSON, assuming success');
         // If response isn't JSON, assume success (Apps Script may redirect)
         result = { success: true, message: 'Thank you for subscribing! 🐕' };
       }
@@ -97,9 +110,11 @@ async function handleNewsletterSubmit(e) {
         }
       } else {
         // Error from server
+        console.error('Server returned error:', result.message);
         showMessage(messageDiv, 'error', result.message);
       }
     } catch (fetchError) {
+      console.error('Fetch error:', fetchError);
       // Network error or CORS issue - try form submission as fallback
       console.log('Fetch failed, submitting via form...', fetchError);
 
@@ -136,7 +151,7 @@ async function handleNewsletterSubmit(e) {
 
   } catch (error) {
     console.error('Newsletter submission error:', error);
-    showMessage(messageDiv, 'error', 'An error occurred. Please try again later.');
+    showMessage(messageDiv, 'error', 'Error: ' + error.message);
   } finally {
     // Restore button
     submitButton.disabled = false;
