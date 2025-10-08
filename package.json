@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build:css": "postcss src/css/main.css -o dist/css/styles.min.css",
-    "build:js": "babel src/js/modules/main.js -o dist/js/script.min.js",
+    "build:js": "babel src/js/modules/main.js -o dist/js/script.min.js && cp src/js/modules/*.js dist/js/",
     "build:sw": "babel src/js/service-worker-registration.js -o dist/js/service-worker-registration.js",
     "build": "npm run build:css && npm run build:js && npm run build:sw",
     "watch:css": "postcss src/css/main.css -o dist/css/styles.min.css --watch",
