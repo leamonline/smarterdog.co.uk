@@ -182,11 +182,8 @@ function getClientIp(e) {
   }
 }
 
-/**
- * Create JSON response
- */
 function createResponse(success, message) {
-  const response = {
+  var response = {
     success: success,
     message: message,
     timestamp: new Date().toISOString()
