@@ -4,7 +4,7 @@
  */
 
 // IMPORTANT: Replace this URL with your deployed Google Apps Script web app URL
-const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysa2myvDeg0dg8G6baSMMl4lG8412qovCCeraSklmQ2c0xkJGN94jXqCzbi6F2EnTk/exec';
 
 /**
  * Initialize newsletter form
