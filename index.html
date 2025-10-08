@@ -374,15 +374,20 @@
             <div class="newsletter-content">
                 <h2>Stay in the Loop! 🐕</h2>
                 <p class="newsletter-description">Get exclusive grooming tips, special offers, and updates delivered straight to your inbox. Join our pack!</p>
-                <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/mdkwzjnk" method="POST">
-                    <input type="hidden" name="_subject" value="Newsletter Signup - Smarter Dog">
-                    <input type="hidden" name="Form Type" value="Newsletter Signup">
+                <form class="newsletter-form" id="newsletterForm">
                     <div class="newsletter-input-group">
                         <label for="newsletter-email" class="visually-hidden">Email Address</label>
                         <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" autocomplete="email" required>
                         <button type="submit">Subscribe</button>
                     </div>
-                    <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime. See our <a href="privacy.html">Privacy Policy</a>.</p>
+                    <div class="newsletter-consent">
+                        <label class="consent-checkbox">
+                            <input type="checkbox" name="consent" required>
+                            <span>I consent to receive marketing emails from Smarter Dog Grooming Salon</span>
+                        </label>
+                    </div>
+                    <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime. See our <a href="privacy.html">Privacy Policy</a> for how we handle your data.</p>
+                    <div class="form-message" style="display: none;"></div>
                 </form>
             </div>
         </div>

@@ -11,6 +11,7 @@ import { initCookieConsent } from './cookies.js';
 import { initForms } from './forms.js';
 import { initUI } from './ui.js';
 import { initLightbox } from './lightbox.js';
+import { initNewsletter } from './newsletter.js';
 
 // Track initialization state
 let isAppInitialized = false;
@@ -59,6 +60,7 @@ async function initializeModules() {
     { name: 'Animations', fn: initAnimations, critical: false },
     { name: 'Cookie Consent', fn: initCookieConsent, critical: false },
     { name: 'Forms', fn: initForms, critical: false },
+    { name: 'Newsletter', fn: initNewsletter, critical: false },
     { name: 'UI', fn: initUI, critical: false },
     { name: 'Lightbox', fn: initLightbox, critical: false }
   ];
