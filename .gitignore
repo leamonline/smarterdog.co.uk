@@ -20,6 +20,7 @@ yarn-error.log*
 
 # OS files
 .DS_Store
+**/.DS_Store
 Thumbs.db
 .AppleDouble
 .LSOverride
