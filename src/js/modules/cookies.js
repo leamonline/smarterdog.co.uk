@@ -190,6 +190,7 @@ export function showCookieBanner() {
   const { cookieConsent } = elements;
   if (!cookieConsent) return;
 
+  cookieConsent.classList.remove('hidden');
   cookieConsent.style.display = 'block';
   cookieConsent.style.animation = 'none';
 
@@ -215,6 +216,7 @@ export function hideCookieBanner() {
 
   setTimeout(() => {
     cookieConsent.style.display = 'none';
+    cookieConsent.classList.add('hidden');
   }, 500);
 }
 
