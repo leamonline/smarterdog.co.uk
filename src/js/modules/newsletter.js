@@ -58,100 +58,60 @@ async function handleNewsletterSubmit(e) {
   submitButton.textContent = 'Subscribing...';
 
   try {
-    // Prepare data
-    const formData = {
-      email: emailInput.value.trim(),
-      consent: consentCheckbox.checked.toString()
-    };
+    console.log('Submitting newsletter form');
 
-    // Submit to Google Apps Script using fetch with proper error handling
-    try {
-      console.log('Submitting to:', APPS_SCRIPT_URL);
-      console.log('Form data:', formData);
+    // Create hidden iframe for form submission (avoids CORS issues)
+    const iframe = document.createElement('iframe');
+    iframe.name = 'newsletter-iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
 
-      const response = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData),
-        redirect: 'follow'
+    // Create a form dynamically to submit
+    const submitForm = document.createElement('form');
+    submitForm.action = APPS_SCRIPT_URL;
+    submitForm.method = 'POST';
+    submitForm.target = 'newsletter-iframe';
+    submitForm.style.display = 'none';
+
+    // Add email field
+    const emailField = document.createElement('input');
+    emailField.type = 'hidden';
+    emailField.name = 'email';
+    emailField.value = emailInput.value.trim();
+    submitForm.appendChild(emailField);
+
+    // Add consent field
+    const consentField = document.createElement('input');
+    consentField.type = 'hidden';
+    consentField.name = 'consent';
+    consentField.value = 'true';
+    submitForm.appendChild(consentField);
+
+    // Submit form
+    document.body.appendChild(submitForm);
+    submitForm.submit();
+
+    // Clean up
+    setTimeout(() => {
+      document.body.removeChild(submitForm);
+      document.body.removeChild(iframe);
+    }, 5000);
+
+    // Show success message (we can't verify with iframe, but assume it worked)
+    showMessage(messageDiv, 'success', 'Thank you for subscribing! 🐕');
+    form.reset();
+
+    // Track conversion (if analytics enabled)
+    if (window.gtag && window.analyticsConsent) {
+      window.gtag('event', 'newsletter_signup', {
+        event_category: 'engagement',
+        event_label: 'newsletter'
       });
-
-      console.log('Response status:', response.status);
-      console.log('Response OK:', response.ok);
-
-      // Google Apps Script redirects on success, so if we get here, check the response
-      const text = await response.text();
-      console.log('Response text:', text);
-
-      let result;
-
-      try {
-        result = JSON.parse(text);
-        console.log('Parsed result:', result);
-      } catch (e) {
-        console.log('Failed to parse JSON, assuming success');
-        // If response isn't JSON, assume success (Apps Script may redirect)
-        result = { success: true, message: 'Thank you for subscribing! 🐕' };
-      }
-
-      if (result.success) {
-        // Success
-        showMessage(messageDiv, 'success', result.message);
-        form.reset();
-
-        // Track conversion (if analytics enabled)
-        if (window.gtag && window.analyticsConsent) {
-          window.gtag('event', 'newsletter_signup', {
-            event_category: 'engagement',
-            event_label: 'newsletter'
-          });
-        }
-      } else {
-        // Error from server
-        console.error('Server returned error:', result.message);
-        showMessage(messageDiv, 'error', result.message);
-      }
-    } catch (fetchError) {
-      console.error('Fetch error:', fetchError);
-      // Network error or CORS issue - try form submission as fallback
-      console.log('Fetch failed, submitting via form...', fetchError);
-
-      // Create hidden iframe for form submission
-      const iframe = document.createElement('iframe');
-      iframe.name = 'newsletter-iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-
-      // Set form to submit to iframe
-      const originalAction = form.action;
-      const originalTarget = form.target;
-      const originalMethod = form.method;
-
-      form.action = APPS_SCRIPT_URL;
-      form.target = 'newsletter-iframe';
-      form.method = 'POST';
-      form.submit();
-
-      // Restore form
-      form.action = originalAction;
-      form.target = originalTarget;
-      form.method = originalMethod;
-
-      // Show success message (we can't verify, but assume it worked)
-      showMessage(messageDiv, 'success', 'Thank you for subscribing! 🐕');
-      form.reset();
-
-      // Clean up iframe after a delay
-      setTimeout(() => {
-        document.body.removeChild(iframe);
-      }, 5000);
     }
 
   } catch (error) {
     console.error('Newsletter submission error:', error);
-    showMessage(messageDiv, 'error', 'Error: ' + error.message);
+    showMessage(messageDiv, 'error', 'An error occurred. Please try again.');
   } finally {
     // Restore button
     submitButton.disabled = false;
