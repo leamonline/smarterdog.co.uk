@@ -169,6 +169,39 @@ npx broken-link-checker https://smarterdog.co.uk
 
 ---
 
+## 🛠️ Troubleshooting
+
+### Unable to update npm globally
+
+The hosted development environment blocks outbound requests to the public npm
+registry for **global** package installations. Running a command such as:
+
+```bash
+npm install -g npm@11.6.2
+```
+
+results in a `403 Forbidden` response. This is an infrastructure limitation, not
+an issue with the project code.
+
+**Workarounds**
+
+- Continue using the bundled npm version (currently `11.4.2`) for local
+  dependency management.
+- When you need a newer npm temporarily, invoke it via `npx` without installing
+  it globally:
+
+  ```bash
+  npx npm@11.6.2 <command>
+  ```
+
+- If you have a machine with unrestricted internet access, perform the upgrade
+  there and commit any resulting lockfile or metadata changes instead of trying
+  the upgrade inside this restricted environment.
+
+These steps avoid the registry restriction while keeping your workflow moving.
+
+---
+
 ## 📊 Performance Metrics
 
 | Metric | Score |
