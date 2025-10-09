@@ -212,21 +212,58 @@ function monitorPerformance() {
  * @returns {boolean} Whether browser is supported
  */
 function checkBrowserCompatibility() {
-  const requiredFeatures = [
-    'querySelector',
-    'addEventListener',
-    'classList',
-    'localStorage',
-    'fetch',
-    'Promise'
-  ];
+  const unsupportedFeatures = [];
 
-  const unsupportedFeatures = requiredFeatures.filter(feature => {
-    if (feature === 'fetch') return !window.fetch;
-    if (feature === 'Promise') return !window.Promise;
-    if (feature === 'localStorage') return !window.localStorage;
-    return !document[feature];
-  });
+  if (!document.querySelector) {
+    unsupportedFeatures.push('querySelector');
+  }
+
+  if (!document.addEventListener) {
+    unsupportedFeatures.push('addEventListener');
+  }
+
+  const documentElement = document.documentElement;
+  if (!(documentElement && documentElement.classList)) {
+    unsupportedFeatures.push('classList');
+  }
+
+  if (!window.fetch) {
+    unsupportedFeatures.push('fetch');
+  }
+
+  if (!window.Promise) {
+    unsupportedFeatures.push('Promise');
+  }
+
+  let localStorageSupported = true;
+  try {
+    const storage = window.localStorage;
+
+    if (!storage) {
+      localStorageSupported = false;
+    } else {
+      const testKey = '__sd_storage_test__';
+      storage.setItem(testKey, '1');
+      storage.removeItem(testKey);
+    }
+  } catch (error) {
+    const isQuotaError =
+      error instanceof DOMException &&
+      (
+        error.code === 22 ||
+        error.code === 1014 ||
+        error.name === 'QuotaExceededError' ||
+        error.name === 'NS_ERROR_DOM_QUOTA_REACHED'
+      );
+
+    if (!isQuotaError) {
+      localStorageSupported = false;
+    }
+  }
+
+  if (!localStorageSupported) {
+    unsupportedFeatures.push('localStorage');
+  }
 
   if (unsupportedFeatures.length > 0) {
     console.warn('Browser missing required features:', unsupportedFeatures);
