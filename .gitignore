@@ -1,10 +1,9 @@
 # Dependencies
 node_modules/
-package-lock.json
 yarn.lock
 
 # Build outputs
-# (dist assets are tracked to ensure production bundle is available)
+dist/
 # *.map
 
 # Environment variables

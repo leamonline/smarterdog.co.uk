@@ -1,74 +1,59 @@
-/**
- * Main Application Entry Point
- * Initializes all modules with proper error handling and logging
- * @module main
- */
+import { config } from './core/config.js';
+import { initNavigation } from './features/navigation.js';
+import { initAnimations } from './features/animations.js';
+import { initCookieConsent } from './features/cookies.js';
+import { initForms } from './features/forms.js';
+import { initUI } from './features/ui.js';
+import { initLightbox } from './features/lightbox.js';
+import { initNewsletter } from './features/newsletter.js';
+import './service-worker-registration.js';
 
-import { config, isFeatureEnabled } from './config.js';
-import { initNavigation } from './navigation.js';
-import { initAnimations } from './animations.js';
-import { initCookieConsent } from './cookies.js';
-import { initForms } from './forms.js';
-import { initUI } from './ui.js';
-import { initLightbox } from './lightbox.js';
-import { initNewsletter } from './newsletter.js';
+const modulePipeline = [
+  { name: 'Navigation', run: initNavigation, critical: true },
+  { name: 'Animations', run: initAnimations, critical: false },
+  { name: 'Cookie Consent', run: initCookieConsent, critical: false },
+  { name: 'Forms', run: initForms, critical: false },
+  { name: 'Newsletter', run: initNewsletter, critical: false },
+  { name: 'UI', run: initUI, critical: false },
+  { name: 'Lightbox', run: initLightbox, critical: false }
+];
 
-// Track initialization state
 let isAppInitialized = false;
 
-/**
- * Initialize the entire application
- */
-async function initApp() {
+export async function initApp() {
   if (isAppInitialized) {
-    console.warn('App already initialized');
+    console.warn('Smarter Dog app already initialized');
     return;
   }
 
-  console.log('%c🐾 Smarter Dog Website Loading...', 'font-size: 16px; color: #e76f51; font-weight: bold;');
-  console.log('Version: 2.0.0');
-  console.log('Environment:', getEnvironment());
+  logBootstrapBanner();
 
   try {
-    // Wait for DOM to be ready
-    await waitForDOM();
-
-    // Initialize modules in sequence
-    // Some modules may depend on DOM elements, so we use try-catch per module
-    await initializeModules();
-
+    await waitForDOMReady();
+    await initializeModulesSequentially();
     isAppInitialized = true;
 
     console.log('%c✓ All modules initialized successfully', 'color: #14b8a6; font-weight: bold;');
     console.log('%c🐾 Smarter Dog Website Ready!', 'font-size: 16px; color: #e76f51; font-weight: bold;');
-
-    // Log feature flags for debugging
     logFeatureFlags();
-
   } catch (error) {
     console.error('Fatal error during app initialization:', error);
-    // Even if there's an error, we try to show the page
   }
 }
 
-/**
- * Initialize all application modules
- */
-async function initializeModules() {
-  const modules = [
-    { name: 'Navigation', fn: initNavigation, critical: true },
-    { name: 'Animations', fn: initAnimations, critical: false },
-    { name: 'Cookie Consent', fn: initCookieConsent, critical: false },
-    { name: 'Forms', fn: initForms, critical: false },
-    { name: 'Newsletter', fn: initNewsletter, critical: false },
-    { name: 'UI', fn: initUI, critical: false },
-    { name: 'Lightbox', fn: initLightbox, critical: false }
-  ];
+function logBootstrapBanner() {
+  const version = config.app?.version ?? 'unknown';
+  const mode = getEnvironment();
+  console.log('%c🐾 Smarter Dog Website Loading...', 'font-size: 16px; color: #e76f51; font-weight: bold;');
+  console.log(`Version: ${version}`);
+  console.log(`Environment: ${mode}`);
+}
 
-  for (const module of modules) {
+async function initializeModulesSequentially() {
+  for (const module of modulePipeline) {
     try {
       console.log(`Initializing ${module.name}...`);
-      await module.fn();
+      await module.run();
       console.log(`✓ ${module.name} initialized`);
     } catch (error) {
       console.error(`✕ Failed to initialize ${module.name}:`, error);
@@ -76,45 +61,36 @@ async function initializeModules() {
       if (module.critical) {
         throw new Error(`Critical module ${module.name} failed to initialize`);
       }
-      // Non-critical modules can fail without breaking the app
     }
   }
 }
 
-/**
- * Wait for DOM to be fully loaded
- * @returns {Promise<void>}
- */
-function waitForDOM() {
-  return new Promise((resolve) => {
+function waitForDOMReady() {
+  return new Promise(resolve => {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', resolve, { once: true });
     } else {
-      // DOM is already ready
       resolve();
     }
   });
 }
 
-/**
- * Get current environment
- * @returns {string} Environment name
- */
-function getEnvironment() {
-  const hostname = window.location.hostname;
+export function getEnvironment() {
+  const explicitMode = config.app?.mode;
+  if (explicitMode) {
+    return explicitMode;
+  }
 
+  const hostname = window.location.hostname;
   if (hostname === 'localhost' || hostname === '127.0.0.1') {
     return 'development';
-  } else if (hostname.includes('staging') || hostname.includes('test')) {
-    return 'staging';
-  } else {
-    return 'production';
   }
+  if (hostname.includes('staging') || hostname.includes('test')) {
+    return 'staging';
+  }
+  return 'production';
 }
 
-/**
- * Log enabled feature flags
- */
 function logFeatureFlags() {
   console.group('Feature Flags');
   Object.entries(config.features).forEach(([feature, enabled]) => {
@@ -125,10 +101,6 @@ function logFeatureFlags() {
   console.groupEnd();
 }
 
-/**
- * Handle global errors
- * @param {ErrorEvent} event - Error event
- */
 function handleGlobalError(event) {
   console.error('Global error caught:', {
     message: event.message,
@@ -138,26 +110,17 @@ function handleGlobalError(event) {
     error: event.error
   });
 
-  // Track error in analytics if available
   if (window.gtag) {
     window.gtag('event', 'exception', {
       description: event.message,
       fatal: false
     });
   }
-
-  // Prevent default error handling
-  // event.preventDefault();
 }
 
-/**
- * Handle unhandled promise rejections
- * @param {PromiseRejectionEvent} event - Rejection event
- */
 function handleUnhandledRejection(event) {
   console.error('Unhandled promise rejection:', event.reason);
 
-  // Track error in analytics if available
   if (window.gtag) {
     window.gtag('event', 'exception', {
       description: `Unhandled rejection: ${event.reason}`,
@@ -166,24 +129,17 @@ function handleUnhandledRejection(event) {
   }
 }
 
-/**
- * Setup global error handlers
- */
 function setupErrorHandlers() {
   window.addEventListener('error', handleGlobalError);
   window.addEventListener('unhandledrejection', handleUnhandledRejection);
 }
 
-/**
- * Performance monitoring
- */
 function monitorPerformance() {
   if (!window.performance || !window.performance.timing) {
     return;
   }
 
   window.addEventListener('load', () => {
-    // Wait a bit for all resources to load
     setTimeout(() => {
       const timing = performance.timing;
       const loadTime = timing.loadEventEnd - timing.navigationStart;
@@ -196,7 +152,6 @@ function monitorPerformance() {
       console.log(`Render Time: ${renderTime}ms`);
       console.groupEnd();
 
-      // Track in analytics if available
       if (window.gtag) {
         window.gtag('event', 'timing_complete', {
           name: 'load',
@@ -207,10 +162,6 @@ function monitorPerformance() {
   });
 }
 
-/**
- * Check browser compatibility
- * @returns {boolean} Whether browser is supported
- */
 function checkBrowserCompatibility() {
   const unsupportedFeatures = [];
 
@@ -238,7 +189,6 @@ function checkBrowserCompatibility() {
   let localStorageSupported = true;
   try {
     const storage = window.localStorage;
-
     if (!storage) {
       localStorageSupported = false;
     } else {
@@ -274,9 +224,6 @@ function checkBrowserCompatibility() {
   return true;
 }
 
-/**
- * Show browser compatibility warning
- */
 function showBrowserWarning() {
   const warningHTML = `
     <div style="
@@ -299,48 +246,45 @@ function showBrowserWarning() {
   document.body.insertAdjacentHTML('afterbegin', warningHTML);
 }
 
-/**
- * Add utility to window for debugging
- */
 function exposeDebugUtilities() {
-  if (getEnvironment() !== 'production') {
-    window.smarterDog = {
-      config,
-      version: '2.0.0',
-      modules: {
-        navigation: () => import('./navigation.js'),
-        animations: () => import('./animations.js'),
-        cookies: () => import('./cookies.js'),
-        forms: () => import('./forms.js')
-      },
-      reinit: () => {
-        isAppInitialized = false;
-        initApp();
-      }
-    };
-
-    console.log('Debug utilities available at window.smarterDog');
+  if (getEnvironment() === 'production') {
+    return;
   }
+
+  window.smarterDog = {
+    config,
+    version: config.app?.version,
+    modules: {
+      navigation: initNavigation,
+      animations: initAnimations,
+      cookies: initCookieConsent,
+      forms: initForms
+    },
+    reinit: () => {
+      isAppInitialized = false;
+      initApp();
+    }
+  };
+
+  console.log('Debug utilities available at window.smarterDog');
 }
 
-// Setup error handlers first
-setupErrorHandlers();
+function bootstrap() {
+  setupErrorHandlers();
 
-// Check browser compatibility
-checkBrowserCompatibility();
+  if (!checkBrowserCompatibility()) {
+    return;
+  }
 
-// Monitor performance
-monitorPerformance();
+  monitorPerformance();
+  exposeDebugUtilities();
+  initApp();
+}
 
-// Expose debug utilities
-exposeDebugUtilities();
+bootstrap();
 
-// Initialize the app
-initApp();
-
-// Export for potential external use
 export default {
   initApp,
   getEnvironment,
-  version: '2.0.0'
+  version: config.app?.version
 };

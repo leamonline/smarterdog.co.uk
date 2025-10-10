@@ -1,3 +1,5 @@
+> **Archived Note:** This document describes the pre-2.1 build. See README.md for the current Vite workflow.
+
 # JavaScript Modernization Summary
 
 ## Project: Smarter Dog Website

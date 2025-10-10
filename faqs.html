@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQs - Smarter Dog Grooming Salon</title>
     <meta name="description" content="Frequently asked questions about dog grooming services at Smarter Dog Grooming Salon. Learn about cancellations, deposits, grooming duration, and puppy grooming.">
-    <link rel="stylesheet" href="dist/css/styles.min.css">
+    <link rel="stylesheet" href="/src/styles/main.css">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="https://smarterdog.co.uk/faqs.html">
@@ -315,17 +315,6 @@
     }
     </script>
 
-    <script type="module" src="dist/js/script.min.js"></script>
-
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(reg => console.log('✓ Service Worker registered:', reg.scope))
-                    .catch(err => console.log('✗ Service Worker registration failed:', err));
-            });
-        }
-    </script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

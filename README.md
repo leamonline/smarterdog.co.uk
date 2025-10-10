@@ -5,7 +5,7 @@
 
 [![Lighthouse Score](https://img.shields.io/badge/Lighthouse-95+-success)](https://pagespeed.web.dev/)
 [![Accessibility](https://img.shields.io/badge/WCAG-2.1%20AA-blue)](https://www.w3.org/WAI/WCAG21/quickref/)
-[![Version](https://img.shields.io/badge/version-2.0.0-brightgreen)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.1.0-brightgreen)](./CHANGELOG.md)
 
 **Live Site**: [smarterdog.co.uk](https://smarterdog.co.uk)
 
@@ -35,8 +35,7 @@ npm run build
 # Build optimized assets
 npm run build
 
-# Deploy dist/ folder to server
-# See DEPLOYMENT.md for details
+# Deploy the generated dist/ folder to the server (see scripts/cpanel-deploy.sh)
 ```
 
 ---
@@ -84,26 +83,17 @@ npm run build
 
 ```
 smarterdog.co.uk/
-├── src/                    # Source files
-│   ├── css/               # Modular CSS (14 files)
-│   │   ├── base/          # Variables, reset, typography
-│   │   ├── components/    # Buttons, cards, forms, etc.
-│   │   ├── layout/        # Header, footer, sections
-│   │   └── utils/         # Utilities & helpers
-│   └── js/                # ES6 Modules (6 files)
-│       └── modules/
-│           ├── config.js
-│           ├── navigation.js
-│           ├── animations.js
-│           ├── cookies.js
-│           ├── forms.js
-│           └── main.js
-├── dist/                  # Production build output
-├── build/                 # Build scripts
-├── *.html                 # HTML pages
-├── manifest.json          # PWA manifest
-├── service-worker.js      # Service worker
-└── package.json           # Dependencies
+├── src/                    # Source files consumed by Vite
+│   ├── core/               # Global config and utilities
+│   ├── features/           # Feature-specific modules (navigation, forms, etc.)
+│   ├── styles/             # Modular CSS entrypoint and partials
+│   └── main.js             # Application bootstrap
+├── public/                 # Static assets copied verbatim into the build
+├── docs/                   # Archived documentation and helper scripts
+├── scripts/                # Deployment helpers (cPanel, CI)
+├── *.html                  # Multi-page entry points (index, faqs, legal pages)
+├── package.json            # Dependencies & scripts
+└── vite.config.js          # Vite configuration (multi-page + version stamping)
 ```
 
 ---
@@ -116,10 +106,9 @@ smarterdog.co.uk/
 - **JavaScript ES6+** - Modules, async/await
 
 ### Build Tools
+- **Vite** - Dev server & production bundler
 - **npm** - Package management
-- **PostCSS** - CSS optimization & autoprefixing
-- **Babel** - JavaScript transpilation
-- **Imagemin** - Image optimization
+- **PostCSS** - CSS optimisation & autoprefixing
 
 ### Services
 - **Formspree** - Form handling
@@ -130,11 +119,8 @@ smarterdog.co.uk/
 
 ## 📚 Documentation
 
-- **[CHANGELOG.md](./CHANGELOG.md)** - Version history & changes
-- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Deployment instructions
-- **[PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)** - Complete project overview
-- **[src/js/MIGRATION.md](./src/js/MIGRATION.md)** - Migration guide
-- **[src/js/QUICKSTART.md](./src/js/QUICKSTART.md)** - 5-minute quick start
+- **docs/** contains the previous JavaScript architecture notes, migration guides, and newsletter helper scripts (kept for reference).
+- The primary workflow lives in this README; see `scripts/cpanel-deploy.sh` for deployment automation details.
 
 ---
 

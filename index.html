@@ -33,13 +33,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="dist/css/styles.min.css?v=2.0" as="style">
-    <link rel="preload" href="dist/js/script.min.js" as="script">
     <link rel="preload" href="logo.png" as="image">
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="dist/css/styles.min.css?v=2.0">
+    <link rel="stylesheet" href="/src/styles/main.css">
     <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="https://smarterdog.co.uk/">
 
@@ -336,27 +334,28 @@
             </div>
             <form class="contact-form" id="contactForm" action="https://formspree.io/f/mdkwzjnk" method="POST">
                 <label for="firstname">
-                    <input type="text" id="firstname" name="First Name" placeholder="First Name" autocomplete="given-name" required>
+                    <input type="text" id="firstname" name="First Name" data-field="firstName" placeholder="First Name" autocomplete="given-name" required>
                 </label>
                 <label for="surname">
-                    <input type="text" id="surname" name="Surname" placeholder="Surname" autocomplete="family-name" required>
+                    <input type="text" id="surname" name="Surname" data-field="surname" placeholder="Surname" autocomplete="family-name" required>
                 </label>
                 <label for="dogsname">
-                    <input type="text" id="dogsname" name="Dogs Name(s)" placeholder="Dog's Name(s)" required>
+                    <input type="text" id="dogsname" name="Dogs Name(s)" data-field="dogNames" placeholder="Dog's Name(s)" required>
                 </label>
                 <label for="breed">
-                    <input type="text" id="breed" name="Breed" placeholder="Breed" required>
+                    <input type="text" id="breed" name="Breed" data-field="breed" placeholder="Breed" required>
                 </label>
                 <label for="email">
-                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required>
+                    <input type="email" id="email" name="email" data-field="email" placeholder="Email" autocomplete="email" required>
                 </label>
                 <label for="tel">
-                    <input type="tel" id="tel" name="Tel" placeholder="Telephone Number" autocomplete="tel" required>
+                    <input type="tel" id="tel" name="Tel" data-field="phone" placeholder="Telephone Number" autocomplete="tel" required>
                 </label>
                 <label for="message">
-                    <textarea id="message" name="message" placeholder="Message" rows="5" required></textarea>
+                    <textarea id="message" name="message" data-field="message" placeholder="Message" rows="5" required></textarea>
                 </label>
                 <button type="submit">Request Availability</button>
+                <p class="form-privacy-notice">Drafts stay on this device and clear automatically. We only track anonymous submission counts for a few hours to prevent spam.</p>
             </form>
         </div>
         <div class="map-container">
@@ -484,8 +483,7 @@
         📱 <span>Book Now</span>
     </a>
 
-    <script type="module" src="dist/js/script.min.js"></script>
-    <script src="dist/js/service-worker-registration.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
  

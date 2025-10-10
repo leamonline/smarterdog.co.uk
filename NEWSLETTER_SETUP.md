@@ -233,7 +233,7 @@ This guide walks you through setting up a GDPR-compliant newsletter signup syste
 ### Files in This Implementation:
 - `newsletter-script.gs` - Google Apps Script code
 - `src/js/modules/newsletter.js` - Frontend form handler
-- `src/css/components/forms.css` - Newsletter styling
+- `src/styles/components/forms.css` - Newsletter styling
 - `index.html` - Updated form with consent checkbox
 - `privacy.html` - Updated GDPR privacy policy
 

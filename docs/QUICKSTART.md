@@ -1,3 +1,5 @@
+> **Archived Note:** This document describes the pre-2.1 build. See README.md for the current Vite workflow.
+
 # Quick Start Guide
 
 Get up and running with the new ES6 modules in 5 minutes!

@@ -4,7 +4,7 @@
  * @module forms
  */
 
-import { config, isFeatureEnabled } from './config.js';
+import { config, isFeatureEnabled } from '../core/config.js';
 import { trackEvent } from './cookies.js';
 
 let isFormsInitialized = false;
@@ -16,8 +16,21 @@ const elements = {
   submitButton: null
 };
 
-// Track submission timestamps for rate limiting
-const submissionTimestamps = [];
+const FIELD_SELECTOR_MAP = {
+  firstName: '[data-field="firstName"]',
+  surname: '[data-field="surname"]',
+  dogNames: '[data-field="dogNames"]',
+  breed: '[data-field="breed"]',
+  email: '[data-field="email"]',
+  phone: '[data-field="phone"]',
+  message: '[data-field="message"]'
+};
+
+// Track submission metadata for rate limiting
+let rateLimitState = {
+  timestamps: [],
+  expiresAt: 0
+};
 
 /**
  * Initialize form functionality
@@ -58,7 +71,7 @@ export function initForms() {
     setupFormAutosave();
 
     // Load submission timestamps for rate limiting
-    loadSubmissionTimestamps();
+    loadRateLimitState();
 
     isFormsInitialized = true;
     console.log('Forms initialized successfully');
@@ -73,11 +86,13 @@ export function initForms() {
 function cacheFormFields() {
   const { contactForm } = elements;
 
+  const fields = Object.entries(FIELD_SELECTOR_MAP).reduce((acc, [key, selector]) => {
+    acc[key] = contactForm.querySelector(selector);
+    return acc;
+  }, {});
+
   elements.formFields = {
-    name: contactForm.querySelector('[name="name"]'),
-    email: contactForm.querySelector('[name="email"]'),
-    phone: contactForm.querySelector('[name="phone"]'),
-    message: contactForm.querySelector('[name="message"]'),
+    ...fields,
     honeypot: contactForm.querySelector('[name="_gotcha"]') ||
               contactForm.querySelector('[name="website"]')
   };
@@ -117,10 +132,11 @@ function setupFormValidation() {
 function validateField(fieldName, field) {
   const value = field.value.trim();
   let errorMessage = '';
+  const label = getFieldLabel(fieldName);
 
   // Required field validation
   if (config.form.requiredFields.includes(fieldName) && !value) {
-    errorMessage = `${capitalize(fieldName)} is required`;
+    errorMessage = `${label} is required`;
   }
   // Email validation
   else if (fieldName === 'email' && value && !config.form.emailPattern.test(value)) {
@@ -129,9 +145,9 @@ function validateField(fieldName, field) {
   // Message length validation
   else if (fieldName === 'message') {
     if (value && value.length < config.form.minMessageLength) {
-      errorMessage = `Message must be at least ${config.form.minMessageLength} characters`;
+      errorMessage = `${label} must be at least ${config.form.minMessageLength} characters`;
     } else if (value && value.length > config.form.maxMessageLength) {
-      errorMessage = `Message must be less than ${config.form.maxMessageLength} characters`;
+      errorMessage = `${label} must be less than ${config.form.maxMessageLength} characters`;
     }
   }
 
@@ -440,39 +456,59 @@ function setupFormAutosave() {
 }
 
 /**
- * Save form data to localStorage
+ * Persist an in-progress draft locally with a TTL so the browser is the only storage location.
  */
 function saveFormData() {
   const { formFields } = elements;
-  const formData = {};
+  const payload = {
+    data: {},
+    savedAt: Date.now()
+  };
 
   Object.entries(formFields).forEach(([fieldName, field]) => {
     if (field && fieldName !== 'honeypot') {
-      formData[fieldName] = field.value;
+      payload.data[fieldName] = field.value;
     }
   });
 
   try {
-    localStorage.setItem(config.storageKeys.formData, JSON.stringify(formData));
+    localStorage.setItem(config.storageKeys.formAutosave, JSON.stringify(payload));
   } catch (error) {
     console.error('Failed to save form data:', error);
   }
 }
 
 /**
- * Load saved form data from localStorage
+ * Restore a locally saved draft if it is still fresh.
  */
 function loadSavedFormData() {
+  const autosaveTtl = config.form.autosaveTtlMs;
+
   try {
-    const savedData = localStorage.getItem(config.storageKeys.formData);
+    const savedData = localStorage.getItem(config.storageKeys.formAutosave);
     if (!savedData) return;
 
-    const formData = JSON.parse(savedData);
-    const { formFields } = elements;
+    const payload = JSON.parse(savedData);
+    if (!payload || typeof payload !== 'object') {
+      localStorage.removeItem(config.storageKeys.formAutosave);
+      return;
+    }
 
-    Object.entries(formData).forEach(([fieldName, value]) => {
+    const { savedAt, data } = payload;
+    if (!data || typeof data !== 'object') {
+      localStorage.removeItem(config.storageKeys.formAutosave);
+      return;
+    }
+
+    if (typeof savedAt === 'number' && Date.now() - savedAt > autosaveTtl) {
+      localStorage.removeItem(config.storageKeys.formAutosave);
+      return;
+    }
+
+    const { formFields } = elements;
+    Object.entries(data).forEach(([fieldName, value]) => {
       const field = formFields[fieldName];
-      if (field && value) {
+      if (field && typeof value === 'string') {
         field.value = value;
       }
     });
@@ -484,64 +520,122 @@ function loadSavedFormData() {
 }
 
 /**
- * Clear saved form data from localStorage
+ * Clear any locally saved draft data.
  */
 function clearSavedFormData() {
   try {
-    localStorage.removeItem(config.storageKeys.formData);
+    localStorage.removeItem(config.storageKeys.formAutosave);
   } catch (error) {
     console.error('Failed to clear form data:', error);
   }
 }
 
 /**
- * Load submission timestamps from localStorage
+ * Hydrate the in-memory rate limit state from localStorage (metadata only).
  */
-function loadSubmissionTimestamps() {
+function loadRateLimitState() {
+  const now = Date.now();
+
   try {
-    const saved = localStorage.getItem(config.storageKeys.submissionTimestamps);
-    if (saved) {
-      const timestamps = JSON.parse(saved);
-      submissionTimestamps.length = 0;
-      submissionTimestamps.push(...timestamps);
-      console.log('Loaded submission timestamps:', submissionTimestamps.length);
+    const saved = localStorage.getItem(config.storageKeys.formRateLimit);
+    if (!saved) {
+      rateLimitState = createRateLimitState(now);
+      return;
     }
+
+    const parsed = JSON.parse(saved);
+    if (!parsed || typeof parsed !== 'object') {
+      rateLimitState = createRateLimitState(now);
+      return;
+    }
+
+    const timestamps = Array.isArray(parsed.timestamps)
+      ? parsed.timestamps.filter(isFiniteNumber)
+      : [];
+    const expiresAt = typeof parsed.expiresAt === 'number'
+      ? parsed.expiresAt
+      : now + config.form.rateLimitMetadataTtlMs;
+
+    if (expiresAt <= now) {
+      clearRateLimitStorage();
+      rateLimitState = createRateLimitState(now);
+      return;
+    }
+
+    rateLimitState = {
+      timestamps,
+      expiresAt
+    };
+
+    pruneRateLimitWindow();
   } catch (error) {
-    console.error('Failed to load submission timestamps:', error);
+    console.error('Failed to load submission metadata:', error);
+    rateLimitState = createRateLimitState(now);
   }
 }
 
 /**
- * Check rate limit for form submissions
- * @returns {boolean} Whether submission is allowed
+ * Check whether the rate limit allows a submission.
  */
 function checkRateLimit() {
-  const now = Date.now();
-  const oneHourAgo = now - (60 * 60 * 1000);
+  pruneRateLimitWindow();
 
-  // Remove old timestamps
-  const recentSubmissions = submissionTimestamps.filter(time => time > oneHourAgo);
-  submissionTimestamps.length = 0;
-  submissionTimestamps.push(...recentSubmissions);
-
-  return submissionTimestamps.length < config.form.maxSubmissionsPerHour;
+  return rateLimitState.timestamps.length < config.form.maxSubmissionsPerWindow;
 }
 
 /**
- * Record submission timestamp
+ * Record a submission timestamp and persist metadata with a rolling TTL.
  */
 function recordSubmissionTimestamp() {
-  submissionTimestamps.push(Date.now());
+  rateLimitState.timestamps.push(Date.now());
+  rateLimitState.expiresAt = Date.now() + config.form.rateLimitMetadataTtlMs;
+  persistRateLimitState();
+}
 
-  // Save to localStorage for persistence
-  try {
-    localStorage.setItem(
-      config.storageKeys.submissionTimestamps,
-      JSON.stringify(submissionTimestamps)
-    );
-  } catch (error) {
-    console.error('Failed to save submission timestamps:', error);
+function pruneRateLimitWindow() {
+  const now = Date.now();
+  const windowStart = now - config.form.rateLimitWindowMs;
+  const filtered = rateLimitState.timestamps.filter(time => time > windowStart);
+
+  if (filtered.length !== rateLimitState.timestamps.length) {
+    rateLimitState.timestamps = filtered;
+  } else {
+    rateLimitState.timestamps = filtered;
   }
+
+  if (rateLimitState.timestamps.length === 0) {
+    rateLimitState.expiresAt = now + config.form.rateLimitMetadataTtlMs;
+  }
+
+  persistRateLimitState();
+}
+
+function persistRateLimitState() {
+  try {
+    const limit = config.form.maxSubmissionsPerWindow * 2;
+    const payload = {
+      timestamps: rateLimitState.timestamps.slice(-limit),
+      expiresAt: rateLimitState.expiresAt || Date.now() + config.form.rateLimitMetadataTtlMs
+    };
+    localStorage.setItem(config.storageKeys.formRateLimit, JSON.stringify(payload));
+  } catch (error) {
+    console.error('Failed to persist submission metadata:', error);
+  }
+}
+
+function clearRateLimitStorage() {
+  try {
+    localStorage.removeItem(config.storageKeys.formRateLimit);
+  } catch (error) {
+    console.error('Failed to clear submission metadata:', error);
+  }
+}
+
+function createRateLimitState(timestamp = Date.now()) {
+  return {
+    timestamps: [],
+    expiresAt: timestamp + config.form.rateLimitMetadataTtlMs
+  };
 }
 
 /**
@@ -550,6 +644,22 @@ function recordSubmissionTimestamp() {
  * @param {number} wait - Wait time in milliseconds
  * @returns {Function} Debounced function
  */
+function isFiniteNumber(value) {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function getFieldLabel(fieldName) {
+  const labels = config.form.fieldLabels || {};
+  if (labels[fieldName]) {
+    return labels[fieldName];
+  }
+
+  // Fallback: prettify camelCase keys
+  return fieldName
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, char => char.toUpperCase());
+}
+
 function debounce(func, wait) {
   let timeout;
   return function executedFunction(...args) {
@@ -567,10 +677,6 @@ function debounce(func, wait) {
  * @param {string} str - String to capitalize
  * @returns {string} Capitalized string
  */
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 /**
  * Cleanup forms
  */

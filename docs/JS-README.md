@@ -1,3 +1,5 @@
+> **Archived Note:** This document describes the pre-2.1 build. See README.md for the current Vite workflow.
+
 # Smarter Dog JavaScript Modules
 
 Modern, modular ES6 JavaScript architecture for the Smarter Dog website.

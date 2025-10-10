@@ -60,6 +60,14 @@
   box-shadow: 8px 8px 0px rgba(38, 70, 83, 0.3);
 }
 
+.form-privacy-notice {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+  margin-top: var(--spacing-xs);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
 /* =============================================================================
    NEWSLETTER FORM
    ============================================================================= */

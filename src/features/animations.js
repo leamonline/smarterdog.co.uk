@@ -4,7 +4,7 @@
  * @module animations
  */
 
-import { config, matchesBreakpoint, isFeatureEnabled } from './config.js';
+import { config, matchesBreakpoint, isFeatureEnabled } from '../core/config.js';
 
 let isAnimationsInitialized = false;
 let pawPrintTimestamp = 0;

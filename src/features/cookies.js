@@ -4,7 +4,7 @@
  * @module cookies
  */
 
-import { config, isFeatureEnabled } from './config.js';
+import { config, isFeatureEnabled } from '../core/config.js';
 import { fadeIn, fadeOut } from './animations.js';
 
 let isCookiesInitialized = false;

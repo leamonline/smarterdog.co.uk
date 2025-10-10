@@ -4,5 +4,9 @@ deployment:
     # Set deployment path
     - export DEPLOYPATH=/home1/xzqjfkmy/public_html/
 
-    # Deploy the site via a helper script that skips anything that is missing
+    # Install dependencies and build the site before deployment
+    - npm ci
+    - npm run build
+
+    # Deploy the freshly built assets
     - ./scripts/cpanel-deploy.sh "$DEPLOYPATH"

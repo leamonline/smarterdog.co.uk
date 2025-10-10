@@ -1,6 +1,6 @@
 /* Service Worker for Smarter Dog Grooming Salon */
 
-const CACHE_VERSION = 'v2.0.0';
+const CACHE_VERSION = 'v2.1.0';
 const CACHE_NAME = `smarterdog-${CACHE_VERSION}`;
 
 // Assets to cache immediately
@@ -8,12 +8,18 @@ const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/faqs.html',
-  '/dist/css/styles.min.css',
-  '/dist/js/script.min.js',
+  '/privacy.html',
+  '/terms.html',
+  '/cookies.html',
+  '/offline.html',
   '/logo.png',
   '/logo-desktop.webp',
   '/logo-tablet.webp',
-  '/logo-mobile.webp'
+  '/logo-mobile.webp',
+  '/manifest.json',
+  '/robots.txt',
+  '/sitemap.xml',
+  '/security.txt'
 ];
 
 // Cache strategies

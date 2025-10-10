@@ -4,7 +4,7 @@
  * @module ui
  */
 
-import { config } from './config.js';
+import { config } from '../core/config.js';
 
 let isUIInitialized = false;
 let backToTopButton = null;

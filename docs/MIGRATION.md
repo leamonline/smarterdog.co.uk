@@ -1,3 +1,5 @@
+> **Archived Note:** This document describes the pre-2.1 build. See README.md for the current Vite workflow.
+
 # Migration Guide: script.js → ES6 Modules
 
 This guide helps you transition from the old monolithic `script.js` to the new modular ES6 architecture.

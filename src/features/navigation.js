@@ -4,7 +4,7 @@
  * @module navigation
  */
 
-import { config, getCSSVariable } from './config.js';
+import { config, getCSSVariable } from '../core/config.js';
 
 let isNavigationInitialized = false;
 

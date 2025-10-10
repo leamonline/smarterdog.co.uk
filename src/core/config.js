@@ -4,11 +4,20 @@
  * @module config
  */
 
-/**
- * Configuration object containing all app settings
- * @const {Object}
- */
+const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
+const APP_ENV =
+  typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.MODE
+    ? import.meta.env.MODE
+    : 'production';
+
 export const config = {
+  // Application metadata
+  app: {
+    name: 'Smarter Dog Grooming Salon',
+    version: APP_VERSION,
+    mode: APP_ENV
+  },
+
   // Analytics
   googleAnalyticsId: 'G-VPN43VE4FC',
 
@@ -52,11 +61,23 @@ export const config = {
 
   // Form Settings
   form: {
-    maxSubmissionsPerHour: 3,
-    requiredFields: ['name', 'email', 'message'],
+    maxSubmissionsPerWindow: 3,
+    rateLimitWindowMs: 60 * 60 * 1000, // 1 hour
+    rateLimitMetadataTtlMs: 6 * 60 * 60 * 1000, // 6 hours
+    autosaveTtlMs: 24 * 60 * 60 * 1000, // 24 hours
+    requiredFields: ['firstName', 'surname', 'dogNames', 'breed', 'email', 'phone', 'message'],
     emailPattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     minMessageLength: 10,
-    maxMessageLength: 1000
+    maxMessageLength: 1000,
+    fieldLabels: {
+      firstName: 'First Name',
+      surname: 'Surname',
+      dogNames: "Dog's Name(s)",
+      breed: 'Breed',
+      email: 'Email',
+      phone: 'Telephone Number',
+      message: 'Message'
+    }
   },
 
   // Animation Settings
@@ -68,10 +89,10 @@ export const config = {
 
   // LocalStorage Keys
   storageKeys: {
-    cookiesAccepted: 'cookiesAccepted',
-    analyticsAccepted: 'analyticsAccepted',
-    formData: 'smarterdog_form_data',
-    submissionTimestamps: 'smarterdog_submissions'
+    cookiesAccepted: 'sd_cookies_choice_v1',
+    analyticsAccepted: 'sd_analytics_choice_v1',
+    formAutosave: 'sd_form_autosave_v2',
+    formRateLimit: 'sd_form_rate_limit_v1'
   }
 };
 
