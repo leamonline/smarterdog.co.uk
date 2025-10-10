@@ -11,7 +11,8 @@
     "watch:css": "postcss src/css/main.css -o dist/css/styles.min.css --watch",
     "watch:js": "babel src/js/modules/main.js -o dist/js/script.min.js --watch",
     "watch": "npm run watch:css & npm run watch:js",
-    "dev": "npm run watch"
+    "dev": "npm run watch",
+    "prepush": "npm run build"
   },
   "keywords": [
     "dog-grooming",
@@ -25,6 +26,7 @@
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "autoprefixer": "^10.4.18",
+    "husky": "^9.0.11",
     "cssnano": "^6.1.0",
     "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
