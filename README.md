@@ -25,6 +25,14 @@ npm run dev
 npm run build
 ```
 
+#### Git hooks (Husky)
+- `npm install` (or `npm ci`) automatically runs `husky install` thanks to the
+  `prepare` script in `package.json`.
+- The Husky **pre-push** hook calls `npm run prepush`, which runs the full build
+  to catch issues before code is pushed to the remote repository.
+- If you ever clone the repo without running the install step, you can manually
+  re-enable Husky via `npx husky install`.
+
 > _Note_: npm is configured with `loglevel=error` (see `.npmrc`) so that
 > environment-provided legacy `http-proxy` settings don't surface warnings
 > during installs or builds. Adjust the log level locally if you need verbose
