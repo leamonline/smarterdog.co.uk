@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Exit immediately if any command fails
+set -e
+
+# Run the build pipeline before allowing a push
+npm run prepush
